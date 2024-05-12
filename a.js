@@ -1,4 +1,4 @@
-t2=""" 
+var t2=`
 <html amp="" lang="en">
 
 <head>
@@ -146,15 +146,7 @@ t2="""
                 </div>
             </amp-story-grid-layer>
         </amp-story-page>
-
-    </amp-story>
-</body>
-
-</html>
-"""
-
-slide2="""  
-        <amp-story-page id="0d117a47-1d57-4743-9b12-9e70e4a72eab" auto-advance-after="7s">
+<amp-story-page id="0d117a47-1d57-4743-9b12-9e70e4a72eab" auto-advance-after="7s">
             <amp-story-grid-layer template="vertical" aspect-ratio="412:618" class="grid-layer">
                 <div class="page-fullbleed-area" style="background-color:#fff">
                     <div class="page-safe-area">
@@ -172,10 +164,14 @@ slide2="""
                         <div style="position:absolute;pointer-events:none;left:12.62136%;top:27.02265%;width:75%;height:41.10032%;opacity:1">
                             <div style="pointer-events:initial;width:100%;height:100%;display:block;position:absolute;top:0;left:0;z-index:0;border-radius:0.6472491909385114% 0.6472491909385114% 0.6472491909385114% 0.6472491909385114% / 0.7874015748031495% 0.7874015748031495% 0.7874015748031495% 0.7874015748031495%"
                             id="el-8ea016b6-feec-4c83-8628-1c1c2eb1adbc">
-                                <h3 class="fill text-wrapper" style="white-space:pre-line;overflow-wrap:break-word;word-break:break-word;margin:-0.4561084142394824% 0;font-family:&quot;Roboto&quot;,&quot;Helvetica Neue&quot;,&quot;Helvetica&quot;,sans-serif;font-size:0.355987em;line-height:1.3;text-align:left;padding:0;color:#000000"><span>$text1</span></h3></div>
+                                <h3 class="fill text-wrapper" style="white-space:pre-line;overflow-wrap:break-word;word-break:break-word;margin:-0.4561084142394824% 0;font-family:&quot;Roboto&quot;,&quot;Helvetica Neue&quot;,&quot;Helvetica&quot;,sans-serif;font-size:0.355987em;line-height:1.3;text-align:left;padding:0;color:#000000"><span>$text2</span></h3></div>
                         </div>
                     </div>
                 </div>
             </amp-story-grid-layer>
         </amp-story-page>
-"""
+    </amp-story>
+</body>
+
+</html>
+`;
