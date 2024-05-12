@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded Web Page</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        #iframeContainer {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        #iframeOverlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2; /* Increase the z-index */
+        }
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            z-index: 1; /* Ensure the iframe is clickable */
+        }
+    </style>
+</head>
+<body>
+    <div id="iframeContainer">
+        <div id="iframeOverlay"></div>
+        <iframe id="webFrame" src="https://zeenews.india.com/hindi/web-stories/world/countries-where-no-indian-lives/2237169" frameborder="0"></iframe>
+    </div>
+
+    <script>
+        const urls = ["https://www.timesnowhindi.com/web-stories/entertainment/7-best-aditi-rao-hydari-movies-must-watch-befor-heeramandi/photostory/109882830.cms","https://www.moneycontrol.com/web-stories/why-lok-sabha-election-2024-is-important-for-first-time-voters-and-youth-2051721.html","https://indianexpress.com/web-stories/celebrities/alia-bhatts-pearly-triumph-at-met-gala-2023/9303422/","https://www.gnttv.com/visualstories/trending/government-give-money-for-shifting-to-these-places-133994-06-05-2024","https://hindi.news18.com/webstories/lifestyle/dont-drink-water-after-eating-this-fruits-2-2055789/","https://www.tv9hindi.com/webstories/india/lok-sabha-election-bsp-party-former-mp-dhananjay-singh",
+            "https://www.whosthat360.com/webstories/whosthat360/manushi-chhillar-slays-in-bodycon-outfit-17029"
+        ,"https://www.livehindustan.com/web-stories/7-disadvantages-of-getting-married-late-_NxD_9QFJjZCSNvKdO75"];
+        let currentIndex = 0;
+        let touchStartY;
+        let iframeOverlay = document.getElementById('iframeOverlay');
+
+        iframeOverlay.addEventListener('touchstart', function(event) {
+            touchStartY = event.touches[0].clientY;
+        });
+
+        iframeOverlay.addEventListener('touchend', function(event) {
+            const touchEndY = event.changedTouches[0].clientY;
+            const swipeDistance = touchStartY - touchEndY;
+            if (swipeDistance > 100) { // Adjust this threshold according to your preference
+                loadNextURL();
+            }
+        });
+
+        function loadNextURL() {
+            currentIndex = (currentIndex + 1) % urls.length;
+            document.getElementById('webFrame').src = urls[currentIndex];
+        }
+    </script>
+</body>
+</html>
