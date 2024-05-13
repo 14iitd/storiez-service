@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="img1.js"></script>
+    <title>Add image with heading</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 18px; /* Increase font size */
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                margin: 20px;
+                padding: 10px;
+            }
+        }
+        .rich-text-input {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            min-height: 100px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+ <script>
+        // Function to handle paste event and preserve multiline content
+        function handlePaste(event) {
+            event.preventDefault();
+            var text = (event.originalEvent || event).clipboardData.getData('text/plain');
+            document.execCommand('insertText', false, text);
+        }
+    </script>
+<body>
+    <div class="container">
+        <h1>Add image url with heading</h1>
+        <form id="postForm">
+            <label for="slide1">Heading:</label>
+            <input type="text" id="slide1" name="slide1">
+            <label for="slide2">Image Url:</label>
+
+
+                    <textarea  contenteditable="true" id="slide2" name="slide2" id="textareaInput" class="rich-text-input" placeholder="Start typing here..."></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('postForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            let t3=t2;
+            // Get input values
+            var slide1Value = document.getElementById('slide1').value;
+            var slide2Value = document.getElementById('slide2').value;
+
+            // Create data object
+            t3 = t3.replace("$text1", slide1Value);
+            t3 = t3.replace("$img1", slide2Value);
+            var data = {"content": t3}
+            // Send POST request
+            fetch('https://playchat.live/news/232323', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('API response:', data);
+                callSecondAPI(data);
+                // Handle API response here
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                // Handle errors here
+            });
+        });
+
+                // Function to call the second API
+        function callSecondAPI(dataFromFirstAPI) {
+        payload={"url":"https://playchat.live/news/"+dataFromFirstAPI.id,"lang":"HINDI","loc":"INDIA","cat":"FACT"}
+
+            fetch('https://playchat.live/stories/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Second API response:', data);
+                // Handle the response from the second API here
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
