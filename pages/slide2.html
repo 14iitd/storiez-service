@@ -107,7 +107,11 @@
 
             // Create data object
             t2 = t2.replace("$text1", slide1Value);
-            t2 = t2.replace("$text2", slide2Value);
+            if (!str || str.length === 0){
+            t2 = t2.replace("$text2", "");
+            }
+            else{
+            t2 = t2.replace("$text2", slide2Value);}
             var data = {"content": t2}
             // Send POST request
             fetch('https://playchat.live/news/232323', {
