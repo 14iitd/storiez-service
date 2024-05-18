@@ -98,6 +98,11 @@
     </div>
 
     <script>
+    // Function to pick a random element from the array
+function getRandomElement(arr) {
+  const randomIndex = Math.floor(Math.random() * arr.length);
+  return arr[randomIndex];
+}
         document.getElementById('postForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
 
@@ -107,11 +112,22 @@
 
             // Create data object
             t2 = t2.replace("$text1", slide1Value);
-            if (!str || str.length === 0){
-            t2 = t2.replace("$text2", "");
+            if (!slide2Value || slide2Value.length === 0){
+            t2 = t2.replace("$slide2", "");
             }
             else{
-            t2 = t2.replace("$text2", slide2Value);}
+            t22=t22.replace("$text2", slide2Value);
+            t2 = t2.replace("$slide2", t22);}
+            var randcolors = ["240750", "344C64", "577B8D", "57A6A1", "222831", "393E46", "00ADB5", "151515", "A91D3A", "C73659", "35155D", "512B81", "4477CE", "8CABFF"];
+
+
+
+
+            // Get a random color from the array
+            var randomColor = getRandomElement(randcolors);
+
+            // Replace the color in the string
+            t2 = t2.replace("252a3a", randomColor);
             var data = {"content": t2}
             // Send POST request
             fetch('https://playchat.live/news/232323', {

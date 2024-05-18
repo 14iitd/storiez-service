@@ -1,49 +1,47 @@
-import random
-from typing import List, Dict
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from pymongo import MongoClient
-from fastapi import APIRouter, Depends, Request
+import matplotlib.pyplot as plt
 
-router = APIRouter()
+# Data
+data = [
+    ("England", "inns & 579 runs", "v Australia"),
+    ("Australia", "inns & 360 runs", "v South Africa"),
+    ("West Indies", "inns & 336 runs", "v India"),
+    ("Australia", "inns & 332 runs", "v England"),
+    ("Pakistan", "inns & 324 runs", "v New Zealand"),
+    ("West Indies", "inns & 322 runs", "v New Zealand"),
+    ("West Indies", "inns & 310 runs", "v Bangladesh"),
+    ("New Zealand", "inns & 301 runs", "v Zimbabwe"),
+    ("New Zealand", "inns & 294 runs", "v Zimbabwe"),
+    ("England", "inns & 285 runs", "v India"),
+    ("England", "inns & 283 runs", "v West Indies"),
+    ("Sri Lanka", "inns & 280 runs", "v Ireland"),
+    ("New Zealand", "inns & 276 runs", "v South Africa"),
+    ("India", "inns & 272 runs", "v West Indies")
+]
 
-from mcq.mcqService import McqService
-from wordle.wordleService import WordleService
+# Separate the data into different lists
+winners = [f"{item[0]} {item[2]}" for item in data]  # Combine winner and opposition for unique labels
+margins = [int(item[1].split('&')[1].split()[0]) for item in data]  # Extract the numeric part of the margin
+full_margins = [item[1] for item in data]
 
-from fastapi import APIRouter, Depends, Request
-from fastapi.responses import JSONResponse
-import json
+# Create figure and axis
+fig, ax = plt.subplots(figsize=(12, 8))
 
-from flashcard.flashService import FlashService
-from post.postService import PostService
-from htmlGames.htmlservice import HtmlService
+# Plot data
+bars = ax.barh(winners, margins, color='skyblue')
 
-mcqService = McqService()
-wordleService = WordleService()
+# Add data labels
+for bar, full_margin in zip(bars, full_margins):
+    ax.text(bar.get_width(), bar.get_y() + bar.get_height()/2, full_margin,
+            va='center', ha='left', fontsize=9)
 
-flashcardService = FlashService()
-postService = PostService()
-htmlService = HtmlService()
-games = [flashcardService,mcqService,postService]
-#games = [mcqService,flashcardService]
+# Set titles and labels
+ax.set_title('Largest Winning Margins in Test Cricket (by innings)', fontsize=16)
+ax.set_xlabel('Margin (innings & runs)', fontsize=12)
+ax.set_ylabel('Winner vs Opposition', fontsize=12)
+plt.gca().invert_yaxis()  # Invert y-axis to have the largest margin on top
 
+# Save the figure
+plt.savefig('largest_winning_margins.png')
 
-# Endpoint to get MCQ questions
-@router.get("/get-question")
-async def get_question(request: Request):
-    gameService = mcqService
-    question = gameService.get_random_question()
-    return JSONResponse(content=question, status_code=200)
-
-
-@router.get("/get-question/bulk")
-async def get_question(request: Request):
-    res = []
-    # for i in range (8):
-    #     gameService = random.choice(games)
-    #     question = gameService.get_random_question()
-    #     res.append(question)
-    htmls=htmlService.get_random_questionbulk()
-    res1=htmls+res
-    random.shuffle(res1)
-    return JSONResponse(content=res1, status_code=200)
+# Show the plot
+plt.show()
