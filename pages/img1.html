@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="img1.js"></script>
     <title>Add image with heading</title>
     <style>
         body {
@@ -100,7 +99,7 @@
     <script>
         document.getElementById('postForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
-            let t3=t2;
+
             // Get input values
             var slide1Value = document.getElementById('slide1').value;
             var slide2Value = document.getElementById('slide2').value;
@@ -108,7 +107,7 @@
             // Create data object
             t3 = t3.replace("$text1", slide1Value);
             t3 = t3.replace("$img1", slide2Value);
-            var data = {"content": t3}
+            var data = {"texts": [slide1Value,slide1Value],"template":"img"}
             // Send POST request
             fetch('https://playchat.live/news/232323', {
                 method: 'POST',

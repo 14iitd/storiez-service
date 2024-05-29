@@ -1,0 +1,79 @@
+
+<!doctype html>
+<html ⚡ lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="This is an interactive story with quizzes.">
+    <link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
+    <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-story-1.0.js">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+    <!-- To begin, import `amp-story-interactive` along your other stories imports. -->
+    <script async custom-element="amp-story-interactive" src="https://cdn.ampproject.org/v0/amp-story-interactive-0.1.js"></script>
+    <!-- We will also link analytics to track statistics -->
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <style amp-custom>
+
+    .center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 22em;
+      font-size: 0.23em;
+    }
+
+    #quiz-1 {
+      --interactive-prompt-text-color: rgb(112, 238, 96);
+      --interactive-prompt-background: linear-gradient(120deg, dodgerblue, blue);
+    }
+
+    #quiz-2 {
+      --interactive-accent-color: rgb(9, 63, 4);
+    }
+
+    #quiz-3 {
+        --interactive-prompt-background: linear-gradient(120deg, dodgerblue, blue);
+    }
+
+    #results-1 {
+      --interactive-prompt-text-color: white;
+      --interactive-accent-color: rgb(5, 99, 221);
+    }
+    </style>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <link rel="canonical" href=".">
+    <title>Interactive quizzes with results</title>
+  </head>
+  <body>
+    <amp-story standalone
+      publisher="Stories Format"
+      title="Soccer facts"
+      poster-portrait-src="./last_supper.jpg"
+      publisher-logo-src="https://amp.dev/static/img/icons/icon-512x512.png">
+      <!-- Add your [amp-analytics](https://amp.dev/documentation/components/amp-analytics/?format=stories) configuration to the story. We will be using the `${storyInteractiveId}` and `${storyInteractiveResponse}` to gather additional information on the responses. A complete list of vars can be found in the [documentation](/documentation/components/amp-story-interactive?format=stories) -->
+
+
+      <amp-story-page id="page-quiz-1">
+        <amp-story-grid-layer template="fill" style="background-color: #234888">
+
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="fill" aspect-ratio="4:6">
+          <div animate-in="scale-fade-up">
+            <amp-story-interactive-quiz
+              id="quiz-1" class="center"
+              prompt-text="Where is capital of India" option-2-correct option-2-confetti="❤️"
+              prompt-size="large" chip-style="transparent"
+              option-1-text="Patna"
+              option-2-text="Delhi"
+              option-3-text="Mumbai"
+              option-4-text="Goa">
+            </amp-story-interactive-quiz>
+          </div>
+        </amp-story-grid-layer>
+      </amp-story-page>
+
+    </amp-story>
+  </body>
+</html>

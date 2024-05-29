@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="a.js"></script>
+
     <title>Post API Example</title>
     <style>
         body {
@@ -109,26 +109,8 @@ function getRandomElement(arr) {
             // Get input values
             var slide1Value = document.getElementById('slide1').value;
             var slide2Value = document.getElementById('slide2').value;
+            var data = {"texts": [slide1Value,slide2Value],"template":"fact"}
 
-            // Create data object
-            t2 = t2.replace("$text1", slide1Value);
-            if (!slide2Value || slide2Value.length === 0){
-            t2 = t2.replace("$slide2", "");
-            }
-            else{
-            t22=t22.replace("$text2", slide2Value);
-            t2 = t2.replace("$slide2", t22);}
-            var randcolors = ["240750", "344C64", "577B8D", "57A6A1", "222831", "393E46", "00ADB5", "151515", "A91D3A", "C73659", "35155D", "512B81", "4477CE", "8CABFF"];
-
-
-
-
-            // Get a random color from the array
-            var randomColor = getRandomElement(randcolors);
-
-            // Replace the color in the string
-            t2 = t2.replace("252a3a", randomColor);
-            var data = {"content": t2}
             // Send POST request
             fetch('https://playchat.live/news/232323', {
                 method: 'POST',

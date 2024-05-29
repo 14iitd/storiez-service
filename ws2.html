@@ -3,72 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Animated Bar Chart</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        canvas {
-            width: 100%;
-            height: 80vh; /* Adjust as needed */
-        }
-    </style>
+    <title>AMP Story Creator</title>
+    <link rel="stylesheet" href="a.css">
 </head>
 <body>
-    <canvas id="myChart"></canvas>
-
-    <script>
-        var data = {
-            '🇦🇷 Argentina': 117,
-            '🇧🇷 Brazil': 99,
-            '🇨🇱 Chile': 92,
-            '🇧🇴 Bolivia': 80,
-            '🇨🇴 Colombia': 61,
-            '🇺🇾 Uruguay': 53,
-            '🇪🇨 Ecuador': 48,
-            '🇬🇾 Guyana': 46,
-            '🇸🇷 Suriname': 44,
-            '🇵🇾 Paraguay': 41,
-            '🇻🇪 Venezuela': 36,
-            '🇵🇪 Peru': 25
-        };
-
-        var labels = Object.keys(data);
-        var values = Object.values(data);
-
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Kilograms (kg)',
-                    data: values,
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                },
-                animation: {
-                    duration: 2000,
-                    easing: 'easeInOutQuart'
-                },
-                responsive: true,
-                maintainAspectRatio: false
-            }
-        });
-
-        // Update data example
-        setTimeout(function() {
-            myChart.data.datasets[0].data = [130, 90, 82, 70, 61, 53, 48, 46, 44, 41, 36, 25];
-            myChart.update();
-        }, 3000);
-    </script>
+    <div class="container">
+        <h1>AMP Story Creator</h1>
+        <div id="pages"></div>
+        <button type="button" onclick="addPage()">Add Page</button>
+        <button type="button" onclick="generateStory()">Generate AMP Story</button>
+        <h2>Preview</h2>
+        <iframe id="preview" width="360" height="640"></iframe>
+    </div>
+    <script src="a.js"></script>
 </body>
 </html>

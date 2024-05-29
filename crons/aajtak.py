@@ -19,6 +19,13 @@ stories = soup.find_all('a',href=True)
 for element in stories:
     href = element['href']
     if '/visualstories/' in href:
-        if href.startswith('/'):
-            href = f"https://www.aajtak.in/{href}"
+        if len(href) > 80:
+            print(href)
+
+            import json
+
+            payload = {"url": href, "cat": "FACT", "lang": "HINDI", "loc": "INDIA"}
+            res1 = requests.post("https://playchat.live/stories/", data=json.dumps(payload))
+            print(res1.text)
+
         print(href)
