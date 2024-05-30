@@ -3,18 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMP Story Creator</title>
-    <link rel="stylesheet" href="a.css">
+    <title>Poll App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .options label:hover {
+            background-color: #e0e0e0;
+        }
+        .options input[type="radio"] {
+            display: none;
+        }
+        .options input[type="radio"]:checked + label {
+            background-color: #2196F3;
+            color: #fff;
+            border-color: #2196F3;
+        }
+        .options input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #2196F3;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .options input[type="submit"]:hover {
+            background-color: #0e87e6;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>AMP Story Creator</h1>
-        <div id="pages"></div>
-        <button type="button" onclick="addPage()">Add Page</button>
-        <button type="button" onclick="generateStory()">Generate AMP Story</button>
-        <h2>Preview</h2>
-        <iframe id="preview" width="360" height="640"></iframe>
+        <h1>What is your favorite programming language?</h1>
+        <form id="pollForm">
+            <div class="options">
+                <input type="radio" id="python" name="language" value="Python">
+                <label for="python">Python</label>
+
+                <input type="radio" id="javascript" name="language" value="JavaScript">
+                <label for="javascript">JavaScript</label>
+
+                <input type="radio" id="java" name="language" value="Java">
+                <label for="java">Java</label>
+
+                <input type="radio" id="cpp" name="language" value="C++">
+                <label for="cpp">C++</label>
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+        <div class="result" id="resultDiv" style="display: none;">
+            <h2>Result:</h2>
+            <div id="resultPercentage"></div>
+        </div>
     </div>
-    <script src="a.js"></script>
+
+    <script>
+        document.getElementById('pollForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const selectedLanguage = document.querySelector('input[name="language"]:checked');
+            if (selectedLanguage) {
+                const totalVotes = document.querySelectorAll('input[name="language"]').length;
+                const selectedOptionVotes = parseInt(selectedLanguage.nextElementSibling.dataset.votes) + 1;
+
+                const percentage = ((selectedOptionVotes / totalVotes) * 100).toFixed(2);
+
+                document.getElementById('resultPercentage').textContent = `${selectedLanguage.value}: ${percentage}%`;
+                document.getElementById('resultDiv').style.display = 'block';
+            } else {
+                alert("Please select an option before submitting.");
+            }
+        });
+
+        // Initialize votes count for each option
+        const options = document.querySelectorAll('.options input[type="radio"]');
+        options.forEach(option => {
+            option.addEventListener('change', function() {
+                option.nextElementSibling.dataset.votes = parseInt(option.nextElementSibling.dataset.votes) + 1;
+            });
+        });
+    </script>
 </body>
 </html>

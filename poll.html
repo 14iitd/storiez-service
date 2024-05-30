@@ -127,3 +127,140 @@
 
   If you want to learn more about all the interactive experiences for Web Stories, head over to the [documentation](/documentation/components/amp-story-interactive?format=stories) or check out the guide on how to make a [story with quizzes](/documentation/examples/components/amp-story-interactive-quiz/?format=stories) instead.
 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Cards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+        .flashcard-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+        .flashcard {
+            width: 100%;
+
+            height: 100%;
+
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            position: relative;
+            cursor: pointer;
+        }
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+        .flashcard .front,
+        .flashcard .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .flashcard .back {
+            transform: rotateY(180deg);
+        }
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 1em;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+        }
+        .controls button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="flashcard-container">
+    <div class="flashcard" id="flashcard">
+        <div class="front" id="flashcard-front"></div>
+        <div class="back" id="flashcard-back"></div>
+    </div>
+</div>
+
+
+
+<script>
+    const flashcards = [
+        { front: 'text1', back: 'This is the answer for text1' },
+        { front: 'text2', back: 'This is the answer for text2' }
+    ];
+
+    let currentIndex = 0;
+
+    const flashcard = document.getElementById('flashcard');
+    const flashcardFront = document.getElementById('flashcard-front');
+    const flashcardBack = document.getElementById('flashcard-back');
+
+    function showCard(index) {
+        flashcardFront.textContent = flashcards[index].front;
+        flashcardBack.textContent = flashcards[index].back;
+    }
+
+    function prevCard() {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : flashcards.length - 1;
+        showCard(currentIndex);
+        flashcard.classList.remove('flipped');
+    }
+
+    function nextCard() {
+        currentIndex = (currentIndex < flashcards.length - 1) ? currentIndex + 1 : 0;
+        showCard(currentIndex);
+        flashcard.classList.remove('flipped');
+    }
+
+    flashcard.addEventListener('click', () => {
+        flashcard.classList.toggle('flipped');
+    });
+
+    showCard(currentIndex);
+</script>
+
+</body>
+</html>
+
+
