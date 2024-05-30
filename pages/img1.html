@@ -135,7 +135,7 @@
 
                 // Function to call the second API
         function callSecondAPI(dataFromFirstAPI) {
-        payload={"url":"https://playchat.live/news/"+dataFromFirstAPI.id,"lang":"HINDI","loc":"INDIA","cat":"FACT"}
+        payload={"url":"https://playchat.live/news/"+dataFromFirstAPI.id,"lang":"ENGLISH","loc":"INDIA","cat":"fact"}
 
             fetch('https://playchat.live/stories/', {
                 method: 'POST',

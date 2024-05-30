@@ -39,7 +39,7 @@ for item in items:
     res1 = requests.post("https://playchat.live/news/232323", data=json.dumps(payload)).text
     import json
     res1=json.loads(res1)
-    payload={"url":"https://playchat.live/news/"+res1["id"],"lang":"HINDI","loc":"INDIA","cat":"TOP"}
+    payload={"url":"https://playchat.live/news/"+res1["id"],"lang":"HINDI","loc":"IN","cat":"top"}
     res1=requests.post("https://playchat.live/stories/",data=json.dumps(payload))
     print(res1.text)
     print(res1.text)
