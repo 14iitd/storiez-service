@@ -5,6 +5,6 @@ for item in res["stories"]:
     print(item["url"])
     #print(item)
     import json
-    payload={"url":item["url"],"lang":"HINDI","loc":"INDIA","cat":"RANDOM"}
+    payload={"url":item["url"],"lang":"HINDI","loc":"INDIA","cat":"fact"}
     res1=requests.post("https://playchat.live/stories/",data=json.dumps(payload))
     print(res1.text)

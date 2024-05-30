@@ -24,7 +24,7 @@ for element in stories:
 
             import json
 
-            payload = {"url": href, "cat": "FACT", "lang": "HINDI", "loc": "INDIA"}
+            payload = {"url": href, "cat": "fact", "lang": "HINDI", "loc": "INDIA"}
             res1 = requests.post("https://playchat.live/stories/", data=json.dumps(payload))
             print(res1.text)
 
