@@ -36,7 +36,8 @@
             margin-bottom: 5px;
         }
 
-        input[type="text"] {
+        input[type="text"],
+        textarea {
             padding: 15px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
@@ -64,6 +65,7 @@
                 padding: 10px;
             }
         }
+
         .rich-text-input {
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -73,41 +75,42 @@
         }
     </style>
 </head>
- <script>
-        // Function to handle paste event and preserve multiline content
-        function handlePaste(event) {
-            event.preventDefault();
-            var text = (event.originalEvent || event).clipboardData.getData('text/plain');
-            document.execCommand('insertText', false, text);
-        }
-    </script>
 <body>
     <div class="container">
         <h1>Add image url with heading</h1>
         <form id="postForm">
             <label for="slide1">Heading:</label>
             <input type="text" id="slide1" name="slide1">
+
             <label for="slide2">Image Url:</label>
+            <textarea contenteditable="true" id="slide2" name="slide2" class="rich-text-input" placeholder="Start typing here..."></textarea>
 
-
-                    <textarea  contenteditable="true" id="slide2" name="slide2" id="textareaInput" class="rich-text-input" placeholder="Start typing here..."></textarea>
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category">
 
             <button type="submit">Submit</button>
         </form>
     </div>
 
     <script>
+        // Function to handle paste event and preserve multiline content
+        function handlePaste(event) {
+            event.preventDefault();
+            var text = (event.originalEvent || event).clipboardData.getData('text/plain');
+            document.execCommand('insertText', false, text);
+        }
+
         document.getElementById('postForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
 
             // Get input values
             var slide1Value = document.getElementById('slide1').value;
             var slide2Value = document.getElementById('slide2').value;
+            var categoryValue = document.getElementById('category').value;
 
             // Create data object
-            //t3 = t3.replace("$text1", slide1Value);
-            //t3 = t3.replace("$img1", slide2Value);
-            var data = {"texts": [slide1Value,slide2Value],"template":"img"}
+            var data = {"texts": [slide1Value, slide2Value], "template": "img"};
+
             // Send POST request
             fetch('https://playchat.live/news/232323', {
                 method: 'POST',
@@ -124,7 +127,7 @@
             })
             .then(data => {
                 console.log('API response:', data);
-                callSecondAPI(data);
+                callSecondAPI(data, categoryValue);
                 // Handle API response here
             })
             .catch(error => {
@@ -133,9 +136,9 @@
             });
         });
 
-                // Function to call the second API
-        function callSecondAPI(dataFromFirstAPI) {
-        payload={"url":"https://playchat.live/news/"+dataFromFirstAPI.id,"lang":"ENGLISH","loc":"INDIA","cat":"fact"}
+        // Function to call the second API
+        function callSecondAPI(dataFromFirstAPI, category) {
+            var payload = {"url": "https://playchat.live/news/" + dataFromFirstAPI.id, "lang": "ENGLISH", "loc": "INDIA", "cat": category};
 
             fetch('https://playchat.live/stories/', {
                 method: 'POST',

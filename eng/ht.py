@@ -40,6 +40,6 @@ for element in story_elements:
             turl=f"https://www.hindustantimes.com{href}"
             print(turl)
             import json
-            payload = {"url": turl, "cat": "RANDOM", "lang": "ENGLISH", "loc": "INDIA"}
+            payload = {"url": turl, "cat": "fact", "lang": "ENGLISH", "loc": "INDIA"}
             res1 = requests.post("https://playchat.live/stories/", data=json.dumps(payload))
             print(res1.text)
