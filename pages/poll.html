@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Poll</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 18px; /* Increase font size */
+        }
+
+        button[type="button"],
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="button"]:hover,
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+        }
+
+        .option input[type="text"] {
+            flex: 1;
+        }
+
+        .option button {
+            margin-left: 10px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                margin: 20px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create a Poll</h1>
+        <form id="pollForm">
+            <label for="question">Poll Question:</label>
+            <textarea id="question" name="question" rows="3"></textarea>
+
+            <label for="options">Options:</label>
+            <div id="options">
+                <div class="option">
+                    <input type="text" name="option" placeholder="Option 1">
+                    <button type="button" onclick="removeOption(this)">Remove</button>
+                </div>
+                <div class="option">
+                    <input type="text" name="option" placeholder="Option 2">
+                    <button type="button" onclick="removeOption(this)">Remove</button>
+                </div>
+            </div>
+            <button type="button" onclick="addOption()">Add Option</button>
+
+            <button type="submit">Create Poll</button>
+        </form>
+    </div>
+
+    <script>
+        function addOption() {
+            const optionsDiv = document.getElementById('options');
+            const newOptionDiv = document.createElement('div');
+            newOptionDiv.classList.add('option');
+            newOptionDiv.innerHTML = `
+                <input type="text" name="option" placeholder="Option ${optionsDiv.children.length + 1}">
+                <button type="button" onclick="removeOption(this)">Remove</button>
+            `;
+            optionsDiv.appendChild(newOptionDiv);
+        }
+
+        function removeOption(button) {
+            button.parentElement.remove();
+        }
+
+        document.getElementById('pollForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const question = document.getElementById('question').value;
+            const options = Array.from(document.getElementsByName('option')).map(option => option.value).filter(value => value.trim() !== '');
+
+            if (!question || options.length < 2) {
+                alert('Please enter a question and at least two options.');
+                return;
+            }
+
+            const pollData = {
+                question: question,
+                options: options
+            };
+
+            // Replace the URL below with the actual endpoint for your API
+            fetch('https://your-api-endpoint.com/polls', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(pollData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Poll created:', data);
+                // Handle the response here, e.g., display a success message or redirect
+            })
+            .catch(error => {
+                console.error('Error creating poll:', error);
+                // Handle the error here, e.g., display an error message
+            });
+        });
+    </script>
+</body>
+</html>

@@ -46,6 +46,13 @@
             font-size: 18px; /* Increase font size */
         }
 
+        input[type="file"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
         button[type="submit"] {
             padding: 10px 20px;
             background-color: #007bff;
@@ -78,13 +85,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>Add Image URL with Heading</h1>
+        <h1>Add Image with Heading</h1>
         <form id="postForm">
             <label for="slide1">Heading:</label>
             <input type="text" id="slide1" name="slide1">
-
-            <label for="slide2">Image URL:</label>
-            <textarea contenteditable="true" id="slide2" name="slide2" class="rich-text-input" placeholder="Start typing here..."></textarea>
+            <label for="imageUpload">Upload Image:</label>
+            <input type="file" id="imageUpload" name="imageUpload" accept="image/*">
 
             <label for="category">Category:</label>
             <select id="category" name="category">
@@ -99,23 +105,37 @@
     </div>
 
     <script>
-        // Function to handle paste event and preserve multiline content
-        function handlePaste(event) {
-            event.preventDefault();
-            var text = (event.originalEvent || event).clipboardData.getData('text/plain');
-            document.execCommand('insertText', false, text);
-        }
+    var img_url=";
+        document.getElementById('imageUpload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const formData = new FormData();
+                formData.append('file', file);
+
+                fetch('https://playchat.live/file', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    img_url = data.file_path;
+                })
+                .catch(error => {
+                    console.error('Error uploading image:', error);
+                });
+            }
+        });
 
         document.getElementById('postForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
 
             // Get input values
             var slide1Value = document.getElementById('slide1').value;
-            var slide2Value = document.getElementById('slide2').value;
+
             var categoryValue = document.getElementById('category').value;
 
             // Create data object
-            var data = {"lang":"ENGLISH", "cat": categoryValue,"texts": [slide1Value, slide2Value], "template": "img"};
+            var data = {"lang":"ENGLISH", "cat": categoryValue, "texts": [slide1Value, img_url], "template": "img"};
 
             // Send POST request
             fetch('https://playchat.live/news/232323', {

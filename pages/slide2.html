@@ -37,7 +37,8 @@
         }
 
         input[type="text"],
-        textarea {
+        textarea,
+        select {
             padding: 15px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
@@ -86,7 +87,11 @@
             <textarea contenteditable="true" id="slide2" name="slide2" class="rich-text-input" placeholder="Start typing here..."></textarea>
 
             <label for="category">Category:</label>
-            <input type="text" id="category" name="category">
+            <select id="category" name="category">
+                <option value="insight">Insight</option>
+                <option value="fact">Fact</option>
+                <option value="news">News</option>
+            </select>
 
             <button type="submit">Submit</button>
         </form>
@@ -114,10 +119,10 @@
             var slide2Value = document.getElementById('slide2').value;
             var categoryValue = document.getElementById('category').value;
 
-            var data = { "texts": [slide1Value, slide2Value], "template": "fact" };
-
+            var data = {"lang": "ENGLISH", "loc": "INDIA", "cat": categoryValue, "texts": [slide1Value, slide2Value], "template": "slides" };
+            alert(data);
             // Send POST request
-            fetch('https://playchat.live/news/232323', {
+            fetch('https://playchat.live/storiez/post', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -132,7 +137,7 @@
             })
             .then(data => {
                 console.log('API response:', data);
-                callSecondAPI(data, categoryValue);
+
                 // Handle API response here
             })
             .catch(error => {
@@ -141,31 +146,7 @@
             });
         });
 
-        // Function to call the second API
-        function callSecondAPI(dataFromFirstAPI, category) {
-            var payload = { "url": "https://playchat.live/news/" + dataFromFirstAPI.id, "lang": "ENGLISH", "loc": "INDIA", "cat": category };
 
-            fetch('https://playchat.live/stories/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch data');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Second API response:', data);
-                // Handle the response from the second API here
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
     </script>
 </body>
 </html>

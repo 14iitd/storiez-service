@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .button {
+            display: block; /* Display as block to list vertically */
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 35px;
+            margin: 30px auto; /* Center the buttons horizontally */
+            font-size: 50px;
+        }
+        .back-button {
+            display: block;
+            margin-bottom: 20px;
+            text-align: left; /* Align left for the back button */
+            font-size: 16px; /* Reduce font size for the back button */
+        }
+        @media screen and (max-width: 600px) {
+            .container {
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <a href="#" class="button" id="flashcard">Flashcard</a>
+        <a href="#" class="button" id="story">Story</a>
+        <a href="#" class="button" id="image">Image</a>
+        <a href="#" class="button" id="imageUpload">UploadImage</a>
+        <a href="#" class="button" id="quiz">Quiz</a>
+    </div>
+
+    <!-- Back button -->
+    <a href="#" class="back-button">&#8592; Back</a>
+
+    <script>
+        // Store the current page URL
+        var currentPageUrl = window.location.href;
+
+        // Function to navigate to URLs in the same page
+        function navigateToUrl(url) {
+            window.location.href = url;
+        }
+
+        // Event listeners for button clicks
+        document.getElementById('flashcard').addEventListener('click', function() {
+            navigateToUrl('https://storiez.today/flash.html');
+        });
+
+        document.getElementById('story').addEventListener('click', function() {
+            navigateToUrl('https://storiez.today/slides2.html');
+        });
+
+        document.getElementById('image').addEventListener('click', function() {
+            navigateToUrl('https://storiez.today/img1.html');
+        });
+
+        document.getElementById('quiz').addEventListener('click', function() {
+            navigateToUrl('https://storiez.today/mcq.html');
+        });
+
+        document.getElementById('poll').addEventListener('click', function() {
+            navigateToUrl('https://storiez.today/imgUpload.html');
+        });
+
+        // Event listener for back button click
+        document.querySelector('.back-button').addEventListener('click', function() {
+            window.location.href = currentPageUrl;
+        });
+    </script>
+</body>
+</html>
