@@ -118,7 +118,7 @@
             var data = {"lang":"ENGLISH", "cat": categoryValue,"texts": [slide1Value, slide2Value], "template": "img"};
 
             // Send POST request
-            fetch('https://playchat.live/news/232323', {
+            fetch('https://playchat.live/storiez/post', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -133,7 +133,7 @@
             })
             .then(data => {
                 console.log('API response:', data);
-                callSecondAPI(data, categoryValue);
+
                 // Handle API response here
             })
             .catch(error => {

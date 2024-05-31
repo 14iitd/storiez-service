@@ -105,45 +105,52 @@
     </div>
 
     <script>
-    var img_url=";
-        document.getElementById('imageUpload').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const formData = new FormData();
-                formData.append('file', file);
-
-                fetch('https://playchat.live/file', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    img_url = data.file_path;
-                })
-                .catch(error => {
-                    console.error('Error uploading image:', error);
-                });
-            }
-        });
-
         document.getElementById('postForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
 
             // Get input values
             var slide1Value = document.getElementById('slide1').value;
-
             var categoryValue = document.getElementById('category').value;
 
-            // Create data object
-            var data = {"lang":"ENGLISH", "cat": categoryValue, "texts": [slide1Value, img_url], "template": "img"};
+            // Get the uploaded image file
+            const file = document.getElementById('imageUpload').files[0];
 
-            // Send POST request
-            fetch('https://playchat.live/news/232323', {
+            // Check if an image is selected
+            if (!file) {
+                alert("Please select an image");
+                return;
+            }
+
+            // Create a FormData object and append the image file to it
+            const formData = new FormData();
+            formData.append('file', file);
+
+            // Upload the image using fetch
+            fetch('https://playchat.live/file', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Once the image is uploaded, get the URL and proceed with the API call
+                const imgUrl = data.file_path;
+
+                // Create data object for API call
+                const apiData = {
+                    "lang": "ENGLISH",
+                    "cat": categoryValue,
+                    "texts": [slide1Value, "https://playchat.live/file/"+imgUrl],
+                    "template": "img"
+                };
+
+                // Send POST request to the API
+                return fetch('https://playchat.live/storiez/post', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(apiData)
+                });
             })
             .then(response => {
                 if (!response.ok) {
@@ -153,7 +160,6 @@
             })
             .then(data => {
                 console.log('API response:', data);
-                callSecondAPI(data, categoryValue);
                 // Handle API response here
             })
             .catch(error => {
@@ -161,8 +167,6 @@
                 // Handle errors here
             });
         });
-
-
     </script>
 </body>
 </html>

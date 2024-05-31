@@ -120,7 +120,7 @@
             var categoryValue = document.getElementById('category').value;
 
             var data = {"lang":"ENGLISH", "cat": categoryValue, "texts": [slide1Value, slide2Value], "template": "flash" };
-            alert(data);
+            //alert(JSON.stringify(data));
             // Send POST request
             fetch('https://playchat.live/storiez/post', {
                 method: 'POST',
