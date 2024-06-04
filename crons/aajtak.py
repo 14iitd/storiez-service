@@ -21,11 +21,8 @@ for element in stories:
     if '/visualstories/' in href:
         if len(href) > 80:
             print(href)
-
             import json
-
-            payload = {"url": href, "cat": "fact", "lang": "HINDI", "loc": "INDIA"}
-            res1 = requests.post("https://playchat.live/stories/", data=json.dumps(payload))
+            payload = {"url": href, "cat": "magazine", "lang": "HINDI", "loc": "INDIA"}
+            res1 = requests.post("https://playchat.live/storiez/post", data=json.dumps(payload))
             print(res1.text)
-
         print(href)

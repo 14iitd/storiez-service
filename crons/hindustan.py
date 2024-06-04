@@ -34,5 +34,5 @@ for url in urls:
     print("https://www.livehindustan.com/web-stories"+url)
     import json
     payload={"url":"https://www.livehindustan.com/web-stories"+url,"lang":"HINDI","loc":"INDIA","cat":"fact"}
-    res1=requests.post("https://playchat.live/stories/",data=json.dumps(payload))
+    res1=requests.post("https://playchat.live/storiez/post",data=json.dumps(payload))
     print(res1.text)

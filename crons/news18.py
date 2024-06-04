@@ -20,6 +20,6 @@ for item in aas:
     #
     #print(cat,url)
     import json
-    payload={"url":url,"cat":"fact","lang":"HINDI","loc":"INDIA"}
-    res1=requests.post("https://playchat.live/stories/",data=json.dumps(payload))
+    payload={"url":url,"cat":"magazine","lang":"HINDI","loc":"INDIA"}
+    res1=requests.post("https://playchat.live/storiez/post/",data=json.dumps(payload))
     print(res1.text)

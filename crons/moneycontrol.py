@@ -20,6 +20,9 @@ story_elements = soup.find_all('a', href=True)
 for element in story_elements:
     href = element['href']
     if '/web-stories/' in href:
-        if href.startswith('/'):
-            href = f"https://hindi.moneycontrol.com/{href}"
-        print(href)
+        if "web-stories" in href and len(href) > 80:
+            import json
+            #print("https://hindi.moneycontrol.com"+href)
+            payload = {"url": "https://hindi.moneycontrol.com"+href, "cat": "magazine", "lang": "HINDI", "loc": "INDIA"}
+            res1 = requests.post("https://playchat.live/storiez/post", data=json.dumps(payload))
+            print(res1.text)

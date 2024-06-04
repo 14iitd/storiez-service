@@ -16,7 +16,10 @@ story_elements = soup.select('a[href*="/webstory/"]')  # Select all <a> tags wit
 
 for element in story_elements:
     href = element.get('href')
-    if href.startswith('/'):
+    if "webstory" in href:
         href = f"https://webstories.prabhasakshi.com{href}"
-    category = element.find_previous('span', class_='category').text if element.find_previous('span', class_='category') else 'No Category'
-    print(f"URL: {href}, Category: {category}")
+        import json
+        payload = {"url": href, "cat": "magazine", "lang": "HINDI", "loc": "INDIA"}
+        res1 = requests.post("https://playchat.live/storiez/post", data=json.dumps(payload))
+        print(res1.text)
+

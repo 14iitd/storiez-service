@@ -14,6 +14,7 @@ def extract_riddle_and_answer(url):
     riddle_element = soup.find('strong', string='Riddle:')
     answer_element = soup.find('strong', string='Answer')
 
+
     riddle_text = riddle_element.next_sibling.strip() if riddle_element else None
     answer_text = answer_element.next_sibling.strip() if answer_element else None
 
@@ -30,20 +31,18 @@ def scrape_riddles():
     riddles = []
 
     for riddle_url in riddle_urls:
-        print(riddle_url)
+        #print(riddle_url)
         riddle_id = riddle_url.split('/')[-1]
         riddle, answer = extract_riddle_and_answer(riddle_url)
-        print(riddle_id,riddle,answer)
+        #print(riddle_id,riddle,answer)
+        answer = answer.replace(":", "")
+        answer = answer.replace(".", "")
         payload = {"texts": [riddle,answer],"template":"riddle"}
-        # import pdb;pdb.set_trace()
-        res1 = requests.post("https://playchat.live/news/232323", data=json.dumps(payload)).text
-        res1 = json.loads(res1)
-        payload = {"url": "https://playchat.live/news/" + res1["id"], "lang": "ENGLISH", "loc": "ALL", "cat": "RIDDLE"}
-        res1 = requests.post("https://playchat.live/stories/", data=json.dumps(payload))
+        print(riddle,len(riddle))
+        if len(riddle)<200:
+            payload = {"texts":[riddle,answer], "lang": "ENGLISH", "cat": "riddle","template":"flash"}
+            res1 = requests.post("https://playchat.live/storiez/post", data=json.dumps(payload))
     return riddles
 
 
 scrape_riddles()
-
-
-

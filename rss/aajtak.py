@@ -38,12 +38,7 @@ for item in items:
         temp=temp.replace("$text1",item)
         fnews=fnews+temp
     data=data.replace("$slides",fnews)
-    payload = {"content": data}
-    #import pdb;pdb.set_trace()
-    res1 = requests.post("https://playchat.live/news/232323", data=json.dumps(payload)).text
-    import json
-    res1=json.loads(res1)
-    payload={"url":"https://playchat.live/news/"+res1["id"],"lang":"HINDI","loc":"INDIA","cat":"top"}
-    res1=requests.post("https://playchat.live/stories/",data=json.dumps(payload))
+    payload={"content": data,"lang":"HINDI","loc":"INDIA","cat":"news"}
+    res1=requests.post("https://playchat.live/storiez/post",data=json.dumps(payload))
     print(res1.text)
     print(res1.text)
