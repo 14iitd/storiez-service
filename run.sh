@@ -6,7 +6,7 @@ DIR="crons"
 # Find and execute each Python file
 for file in "$DIR"/*.py
 do
-  python "$file"
+  python3 "$file"
 done
 
 DIR="eng"
@@ -14,5 +14,5 @@ DIR="eng"
 # Find and execute each Python file
 for file in "$DIR"/*.py
 do
-  python "$file"
+  python3 "$file"
 done
