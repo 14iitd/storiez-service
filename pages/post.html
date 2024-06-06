@@ -43,6 +43,7 @@
     <div class="container">
 
         <a href="#" class="button" id="flashcard">Flashcard</a>
+        <a href="#" class="button" id="poll">poll</a>
         <a href="#" class="button" id="story">Story</a>
         <a href="#" class="button" id="image">Image</a>
         <a href="#" class="button" id="imageUpload">UploadImage</a>
@@ -64,6 +65,10 @@
         // Event listeners for button clicks
         document.getElementById('flashcard').addEventListener('click', function() {
             navigateToUrl('https://storiez.today/flash.html');
+        });
+        // Event listeners for button clicks
+        document.getElementById('poll').addEventListener('click', function() {
+            navigateToUrl('https://storiez.today/poll.html');
         });
 
         document.getElementById('story').addEventListener('click', function() {

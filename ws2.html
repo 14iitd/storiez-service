@@ -3,115 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poll App</title>
+    <title>Load URLs in Iframes</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
         }
-        .container {
-            max-width: 600px;
-            margin: 20px auto;
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
             padding: 20px;
+        }
+        .grid-item {
             border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        h1 {
-            text-align: center;
-        }
-        .options label {
-            display: block;
-            margin-bottom: 10px;
-            cursor: pointer;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        .options label:hover {
-            background-color: #e0e0e0;
-        }
-        .options input[type="radio"] {
-            display: none;
-        }
-        .options input[type="radio"]:checked + label {
-            background-color: #2196F3;
-            color: #fff;
-            border-color: #2196F3;
-        }
-        .options input[type="submit"] {
-            display: block;
+        iframe {
             width: 100%;
-            padding: 10px;
-            margin-top: 20px;
-            background-color: #2196F3;
-            color: #fff;
+            height: 300px;
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .options input[type="submit"]:hover {
-            background-color: #0e87e6;
-        }
-        .result {
-            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>What is your favorite programming language?</h1>
-        <form id="pollForm">
-            <div class="options">
-                <input type="radio" id="python" name="language" value="Python">
-                <label for="python">Python</label>
-
-                <input type="radio" id="javascript" name="language" value="JavaScript">
-                <label for="javascript">JavaScript</label>
-
-                <input type="radio" id="java" name="language" value="Java">
-                <label for="java">Java</label>
-
-                <input type="radio" id="cpp" name="language" value="C++">
-                <label for="cpp">C++</label>
-            </div>
-            <input type="submit" value="Submit">
-        </form>
-        <div class="result" id="resultDiv" style="display: none;">
-            <h2>Result:</h2>
-            <div id="resultPercentage"></div>
-        </div>
-    </div>
+    <h1>Load URLs from API Response in Iframes</h1>
+    <div class="grid-container" id="iframes-container"></div>
 
     <script>
-        document.getElementById('pollForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form submission
+        async function loadUrls() {
+            const response = await fetch('https://playchat.live/stories/bulk');
+            const data = await response.json();
+             // Assuming the response has a property 'urls' which is an array of URLs
 
-            const selectedLanguage = document.querySelector('input[name="language"]:checked');
-            if (selectedLanguage) {
-                const totalVotes = document.querySelectorAll('input[name="language"]').length;
-                const selectedOptionVotes = parseInt(selectedLanguage.nextElementSibling.dataset.votes) + 1;
+            const container = document.getElementById('iframes-container');
+            data.slice(0, 15).forEach(item => {
+                const gridItem = document.createElement('div');
+                gridItem.classList.add('grid-item');
 
-                const percentage = ((selectedOptionVotes / totalVotes) * 100).toFixed(2);
+                const iframe = document.createElement('iframe');
+                iframe.src = item.source.url;
 
-                document.getElementById('resultPercentage').textContent = `${selectedLanguage.value}: ${percentage}%`;
-                document.getElementById('resultDiv').style.display = 'block';
-            } else {
-                alert("Please select an option before submitting.");
-            }
-        });
+                // Add event listener to open iframe in new page when clicked
+                iframe.addEventListener('click', () => {
+                    window.open(iframe.src, '_blank');
+                });
 
-        // Initialize votes count for each option
-        const options = document.querySelectorAll('.options input[type="radio"]');
-        options.forEach(option => {
-            option.addEventListener('change', function() {
-                option.nextElementSibling.dataset.votes = parseInt(option.nextElementSibling.dataset.votes) + 1;
+                gridItem.appendChild(iframe);
+                container.appendChild(gridItem);
             });
-        });
+        }
+
+        loadUrls();
     </script>
 </body>
 </html>
