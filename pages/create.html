@@ -14,19 +14,21 @@
             flex-direction: column;
             height: 100vh;
         }
-        .container {
+        .container1 {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 0;
-        }
-        iframe {
             width: 100%;
-            height: 100%;
-            border: none;
+        }
+        .content1 {
+            width: 100%;
             flex: 1;
+            overflow: auto;
+            padding: 20px;
+            box-sizing: border-box;
         }
         .menu {
             display: flex;
@@ -34,14 +36,16 @@
             justify-content: space-around;
             background-color: #f8f9fa;
             padding: 10px 0;
+            width: 100%;
+            box-sizing: border-box;
         }
         .button {
-            padding: 2px;
+            padding: 10px;
             background-color: #007bff;
             color: #fff;
-            border-radius: 5px;
-            margin: 1px;
-            font-size: 15px;
+            border-radius: 35px;
+            margin: 5px;
+            font-size: 16px;
             width: calc(33% - 10px); /* Adjust for spacing */
             text-align: center;
             display: flex;
@@ -54,99 +58,80 @@
             margin-right: 8px;
         }
 
-
         @media screen and (max-width: 600px) {
             .menu {
                 flex-direction: column;
                 align-items: center;
             }
             .button {
-                font-size: 25px;
+                font-size: 14px;
                 width: 80%;
             }
         }
-       /* Adjustments for mobile screens */
-@media screen and (max-width: 600px) {
-    .menu {
-        flex-direction: column;
-        align-items: center;
-    }
-    .button {
-        width: 50%;
-        margin-bottom: 10px; /* Add some space between buttons */
-    }
-
-}
-
-
-
-
-.menu {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 0 10px; /* Add padding to reduce white space */
-}
-
-.button {
-    width: calc(30% - 10px); /* Adjust for spacing */
-
-}
-
-
     </style>
 </head>
 <body>
-    <div class="container">
-        <iframe id="content-frame" src=""></iframe>
-
+    <div class="container1">
+        <div class="content1" id="content-container1"></div>
     </div>
+
     <div class="menu">
         <a href="#" class="button" id="flashcard"><i class="fas fa-book-open"></i>Flashcard</a>
         <a href="#" class="button" id="poll"><i class="fas fa-poll"></i>Poll</a>
         <a href="#" class="button" id="slides"><i class="fas fa-book"></i>Story</a>
         <a href="#" class="button" id="image"><i class="fas fa-image"></i>Image</a>
         <a href="#" class="button" id="imageUpload"><i class="fas fa-upload"></i>Upload</a>
-        <a href="#" class="button" id="status"><i class="fas fa-question"></i>status</a>
+        <a href="#" class="button" id="status"><i class="fas fa-question"></i>Status</a>
     </div>
 
-    <script>
-        // Store the initial page URL
-        var initialPageUrl = window.location.href;
+    <!-- Back button -->
+    <a href="#" class="back-button" id="back-button"><i class="fas fa-arrow-left"></i>Back</a>
 
-        // Function to load URL into iframe
-        function loadIntoIframe(url) {
-            document.getElementById('content-frame').src = url;
+    <!-- Include the content.js file -->
+    <script src="a.js"></script>
+
+    <script>
+            // Function to load content into iframe
+        function loadContent(key) {
+            document.getElementById('content-frame').srcdoc = contentCache[key];
+        }
+        // Function to load content into the container
+        function loadContent(key) {
+            document.getElementById('content-container1').innerHTML = contentCache[key];
         }
 
         // Event listeners for button clicks
         document.getElementById('flashcard').addEventListener('click', function() {
-            loadIntoIframe('https://storiez.today/flash.html');
+            loadContent('flashcard');
         });
 
         document.getElementById('poll').addEventListener('click', function() {
-            loadIntoIframe('https://storiez.today/poll.html');
+            loadContent('poll');
         });
 
         document.getElementById('slides').addEventListener('click', function() {
-            loadIntoIframe('https://storiez.today/slides2.html');
+            loadContent('slides');
         });
 
         document.getElementById('image').addEventListener('click', function() {
-            loadIntoIframe('https://storiez.today/img1.html');
+            loadContent('image');
         });
 
         document.getElementById('imageUpload').addEventListener('click', function() {
-            loadIntoIframe('https://storiez.today/imgUpload.html');
+            loadContent('imageUpload');
         });
 
         document.getElementById('status').addEventListener('click', function() {
-            loadIntoIframe('https://storiez.today/status.html');
+            loadContent('status');
         });
 
         // Event listener for back button click
+        document.getElementById('back-button').addEventListener('click', function() {
+            loadContent('poll'); // Load the default content
+        });
 
-        loadIntoIframe('https://storiez.today/poll.html');
+        // Load default content
+        loadContent('poll');
     </script>
 </body>
 </html>
