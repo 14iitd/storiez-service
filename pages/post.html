@@ -53,16 +53,8 @@
         .button i {
             margin-right: 8px;
         }
-        .back-button {
-            text-align: left;
-            font-size: 16px;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-        }
-        .back-button i {
-            margin-right: 5px;
-        }
+
+
         @media screen and (max-width: 600px) {
             .menu {
                 flex-direction: column;
@@ -80,31 +72,28 @@
         align-items: center;
     }
     .button {
-        width: 80%;
+        width: 50%;
         margin-bottom: 10px; /* Add some space between buttons */
     }
-    .back-button {
-        width: 80%;
-        margin-top: 10px; /* Add some space between back button and other buttons */
-    }
+
 }
+
+
+
+
 .menu {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    max-width: 600px; /* Limit the maximum width of the menu */
-    margin: 0 auto; /* Center the menu horizontally */
+    padding: 0 10px; /* Add padding to reduce white space */
 }
 
 .button {
-    width: calc(33.33% - 10px); /* Adjust for spacing */
-    margin: 5px;
+    width: calc(30% - 10px); /* Adjust for spacing */
+
 }
 
-.back-button {
-    width: 100%; /* Full width for the back button */
-    margin: 5px 0; /* Adjust margin for spacing */
-}
+
     </style>
 </head>
 <body>
@@ -120,11 +109,6 @@
         <a href="#" class="button" id="imageUpload"><i class="fas fa-upload"></i>Upload</a>
         <a href="#" class="button" id="status"><i class="fas fa-question"></i>status</a>
     </div>
-
-
-
-    <!-- Back button -->
-    <a href="#" class="back-button"><i class="fas fa-arrow-left"></i>Back</a>
 
     <script>
         // Store the initial page URL
@@ -161,9 +145,7 @@
         });
 
         // Event listener for back button click
-        document.querySelector('.back-button').addEventListener('click', function() {
-            loadIntoIframe(initialPageUrl);
-        });
+
         loadIntoIframe('https://storiez.today/poll.html');
     </script>
 </body>
