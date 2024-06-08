@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write Text Over Full Screen</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff; /* Set background to white */
+            color: #000; /* Set text color to black */
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 9999; /* Ensure overlay stays on top */
+        }
+
+        .overlay textarea {
+            width: 80%;
+            padding: 15px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            outline: none;
+            background-color: #f9f9f9; /* Set input background to light gray */
+            color: #000; /* Set text color to black */
+            resize: none; /* Prevent resizing */
+        }
+
+        .overlay textarea::placeholder {
+            color: #999; /* Set placeholder color to gray */
+        }
+
+        .overlay select {
+            width: 80%;
+            padding: 15px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            outline: none;
+            background-color: #f9f9f9; /* Set input background to light gray */
+            color: #000; /* Set text color to black */
+            transition: border-color 0.3s;
+        }
+
+        .overlay select:hover,
+        .overlay select:focus {
+            border-color: #007bff; /* Highlight border on hover and focus */
+        }
+
+        .overlay button {
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .overlay button:hover {
+            background-color: #0056b3;
+        }
+
+        @media screen and (max-width: 600px) {
+            .overlay textarea,
+            .overlay select {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <textarea placeholder="Type your text here" rows="5"></textarea> <!-- Set rows to specify the number of visible lines -->
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+            <option value="insight">Insight</option>
+            <option value="fact">Fact</option>
+            <option value="news">News</option>
+        </select>
+        <button>Submit</button>
+    </div>
+</body>
+</html>

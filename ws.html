@@ -1,26 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Page Title</title>
-
-    <!-- Twitter Card data -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@your_twitter_handle">
-    <meta name="twitter:title" content="Your Page Title">
-    <meta name="twitter:description" content="A brief description of your page.">
-    <meta name="twitter:image" content="https://example.com/path/to/large_image.jpg">
-
-    <!-- Additional Open Graph data for Facebook, LinkedIn, etc. -->
-    <meta property="og:title" content="Your Page Title">
-    <meta property="og:description" content="A brief description of your page.">
-    <meta property="og:image" content="https://example.com/path/to/large_image.jpg">
-    <meta property="og:url" content="https://example.com/your-page">
-    <meta property="og:type" content="website">
+  <title>AMP Story Builder</title>
+  <link rel="stylesheet" href="a.css">
 </head>
 <body>
-    <h1>Your Page Content</h1>
-    <p>This is an example page.</p>
+  <h1>AMP Story Builder</h1>
+  <div id="editor">
+    <div id="story-preview">
+      <!-- Story preview will be rendered here -->
+    </div>
+    <div id="controls">
+      <h2>Add New Page</h2>
+      <button onclick="addPage()">Add Page</button>
+    </div>
+  </div>
+  <button onclick="generateStory()">Generate AMP Story</button>
+  <pre id="storyOutput"></pre>
+  <script src="a.js"></script>
 </body>
 </html>
