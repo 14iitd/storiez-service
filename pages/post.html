@@ -73,25 +73,45 @@
                 width: 80%;
             }
         }
-        @media screen and (max-width: 600px) {
+       /* Adjustments for mobile screens */
+@media screen and (max-width: 600px) {
     .menu {
         flex-direction: column;
         align-items: center;
     }
     .button {
         width: 80%;
+        margin-bottom: 10px; /* Add some space between buttons */
     }
     .back-button {
         width: 80%;
+        margin-top: 10px; /* Add some space between back button and other buttons */
     }
+}
+.menu {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 600px; /* Limit the maximum width of the menu */
+    margin: 0 auto; /* Center the menu horizontally */
+}
+
+.button {
+    width: calc(33.33% - 10px); /* Adjust for spacing */
+    margin: 5px;
+}
+
+.back-button {
+    width: 100%; /* Full width for the back button */
+    margin: 5px 0; /* Adjust margin for spacing */
 }
     </style>
 </head>
 <body>
     <div class="container">
         <iframe id="content-frame" src=""></iframe>
-    </div>
 
+    </div>
     <div class="menu">
         <a href="#" class="button" id="flashcard"><i class="fas fa-book-open"></i>Flashcard</a>
         <a href="#" class="button" id="poll"><i class="fas fa-poll"></i>Poll</a>
@@ -100,6 +120,8 @@
         <a href="#" class="button" id="imageUpload"><i class="fas fa-upload"></i>Upload</a>
         <a href="#" class="button" id="status"><i class="fas fa-question"></i>status</a>
     </div>
+
+
 
     <!-- Back button -->
     <a href="#" class="back-button"><i class="fas fa-arrow-left"></i>Back</a>
