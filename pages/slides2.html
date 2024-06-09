@@ -189,7 +189,7 @@
 
                 // Show toast message
                 var toast = document.getElementById('toast');
-                toast.innerHTML = response;
+                toast.innerHTML = JSON.stringify(response);
                 toast.style.visibility = 'visible';
 
                 // Hide toast message after 3 seconds
