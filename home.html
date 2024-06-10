@@ -70,7 +70,7 @@
         // Fetch data from API
         const urlParams = new URLSearchParams(window.location.search);
         //alert(urlParams);
-        fetch('https://playchat.live/stories/bulk?'+urlParams)
+        fetch('https://playchat.live/stories/bulk?langs=ENGLISH&'+urlParams)
             .then(response => response.json())
             .then(data => {
                 // Populate URLs array with source values from API response

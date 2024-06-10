@@ -25,6 +25,7 @@
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         h1 {
@@ -114,11 +115,73 @@
                 font-size: 14px;
             }
         }
+
+        .loader {
+            display: none;
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #007bff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #28a745;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+        }
+
+        .toast.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @-webkit-keyframes fadein {
+            from { bottom: 0; opacity: 0; }
+            to { bottom: 30px; opacity: 1; }
+        }
+
+        @keyframes fadein {
+            from { bottom: 0; opacity: 0; }
+            to { bottom: 30px; opacity: 1; }
+        }
+
+        @-webkit-keyframes fadeout {
+            from { bottom: 30px; opacity: 1; }
+            to { bottom: 0; opacity: 0; }
+        }
+
+        @keyframes fadeout {
+            from { bottom: 30px; opacity: 1; }
+            to { bottom: 0; opacity: 0; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-
+        <div class="loader" id="loader"></div>
+        <div class="toast" id="toast">Poll created successfully!</div>
         <form id="pollForm">
             <label for="question">Poll Question:</label>
             <textarea id="question" name="question" rows="3" placeholder="Enter your poll question here..."></textarea>
@@ -164,6 +227,21 @@
             });
         }
 
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast show';
+            setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 3000);
+        }
+
+        function showLoader() {
+            document.getElementById('loader').style.display = 'block';
+        }
+
+        function hideLoader() {
+            document.getElementById('loader').style.display = 'none';
+        }
+
         document.getElementById('pollForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
 
@@ -184,6 +262,8 @@
                 "loc": "INDIA"
             };
 
+            showLoader();
+
             // Replace the URL below with the actual endpoint for your API
             fetch('https://playchat.live/storiez/post', {
                 method: 'POST',
@@ -195,10 +275,13 @@
             .then(response => response.json())
             .then(data => {
                 console.log('Poll created:', data);
+                showToast('Poll created successfully!');
+                hideLoader();
                 // Handle the response here, e.g., display a success message or redirect
             })
             .catch(error => {
                 console.error('Error creating poll:', error);
+                hideLoader();
                 // Handle the error here, e.g., display an error message
             });
         });
