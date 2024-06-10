@@ -43,7 +43,7 @@
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            font-size: 18px; /* Increase font size */
+            font-size: 18px;
         }
 
         button[type="submit"] {
@@ -74,11 +74,73 @@
             min-height: 100px;
             font-family: Arial, sans-serif;
         }
+
+        .loader {
+            display: none;
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #007bff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #28a745;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+        }
+
+        .toast.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @-webkit-keyframes fadein {
+            from { bottom: 0; opacity: 0; }
+            to { bottom: 30px; opacity: 1; }
+        }
+
+        @keyframes fadein {
+            from { bottom: 0; opacity: 0; }
+            to { bottom: 30px; opacity: 1; }
+        }
+
+        @-webkit-keyframes fadeout {
+            from { bottom: 30px; opacity: 1; }
+            to { bottom: 0; opacity: 0; }
+        }
+
+        @keyframes fadeout {
+            from { bottom: 30px; opacity: 1; }
+            to { bottom: 0; opacity: 0; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-
+        <div class="loader" id="loader"></div>
+        <div class="toast" id="toast">Post created successfully!</div>
         <form id="postForm">
             <label for="slide1">Heading:</label>
             <input type="text" id="slide1" name="slide1">
@@ -99,25 +161,37 @@
     </div>
 
     <script>
-        // Function to handle paste event and preserve multiline content
-        function handlePaste(event) {
-            event.preventDefault();
-            var text = (event.originalEvent || event).clipboardData.getData('text/plain');
-            document.execCommand('insertText', false, text);
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast show';
+            setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 3000);
+        }
+
+        function showLoader() {
+            document.getElementById('loader').style.display = 'block';
+        }
+
+        function hideLoader() {
+            document.getElementById('loader').style.display = 'none';
         }
 
         document.getElementById('postForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
 
-            // Get input values
-            var slide1Value = document.getElementById('slide1').value;
-            var slide2Value = document.getElementById('slide2').value;
-            var categoryValue = document.getElementById('category').value;
+            const slide1Value = document.getElementById('slide1').value;
+            const slide2Value = document.getElementById('slide2').value;
+            const categoryValue = document.getElementById('category').value;
 
-            // Create data object
-            var data = {"lang":"ENGLISH", "cat": categoryValue,"texts": [slide1Value, slide2Value], "template": "img"};
+            const data = {
+                "lang": "ENGLISH",
+                "cat": categoryValue,
+                "texts": [slide1Value, slide2Value],
+                "template": "img"
+            };
 
-            // Send POST request
+            showLoader();
+
             fetch('https://playchat.live/storiez/post', {
                 method: 'POST',
                 headers: {
@@ -133,16 +207,22 @@
             })
             .then(data => {
                 console.log('API response:', data);
-
-                // Handle API response here
+                showToast('Post created successfully!');
+                hideLoader();
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
-                // Handle errors here
+                hideLoader();
             });
         });
 
+        document.getElementById('slide2').addEventListener('paste', handlePaste);
 
+        function handlePaste(event) {
+            event.preventDefault();
+            var text = (event.originalEvent || event).clipboardData.getData('text/plain');
+            document.execCommand('insertText', false, text);
+        }
     </script>
 </body>
 </html>

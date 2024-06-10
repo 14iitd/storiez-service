@@ -1,22 +1,73 @@
+
+
 <!doctype html>
-<html>
-<head>
-  <title>AMP Story Builder</title>
-  <link rel="stylesheet" href="a.css">
-</head>
-<body>
-  <h1>AMP Story Builder</h1>
-  <div id="editor">
-    <div id="story-preview">
-      <!-- Story preview will be rendered here -->
-    </div>
-    <div id="controls">
-      <h2>Add New Page</h2>
-      <button onclick="addPage()">Add Page</button>
-    </div>
-  </div>
-  <button onclick="generateStory()">Generate AMP Story</button>
-  <pre id="storyOutput"></pre>
-  <script src="a.js"></script>
-</body>
+<html ⚡ lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="This is an interactive story with polls.">
+    <link rel="preload" as="script" href="https://ampjs.org/v0.js">
+    <link rel="preload" as="script" href="https://ampjs.org/v0/amp-story-1.0.js">
+    <script async src="https://ampjs.org/v0.js"></script>
+    <script async custom-element="amp-story" src="https://ampjs.org/v0/amp-story-1.0.js"></script>
+    <!-- To begin, import `amp-story-interactive` along your other stories imports. -->
+    <script async custom-element="amp-story-interactive" src="https://ampjs.org/v0/amp-story-interactive-0.1.js"></script>
+    <script>
+      var ampId=1212312312123;
+      var client_ID=1212312312123;
+    </script>
+    <style amp-custom>
+    .center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 22em;
+      font-size: 0.23em;
+      --interactive-prompt-text-color: rgb(0, 0, 0);
+    }
+
+
+
+    </style>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <link rel="canonical" href=".">
+    <title>Interactive polls with results</title>
+  </head>
+  <body>
+    <amp-story standalone
+      publisher="Stories Format"
+      title="Name that artist"
+      poster-portrait-src="./last_supper.jpg"
+      publisher-logo-src="https://amp.dev/static/img/icons/icon-512x512.png">
+
+
+      <amp-story-page id="abhishek ranjan">
+        <amp-story-grid-layer template="fill" style="background-color: white">
+          <amp-img style="opacity:0.7"
+            layout="fixed" width="1600" height="1200"
+            src="https://images.unsplash.com/photo-1585834377618-3d85069b884e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fHBvc3RlciUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D"
+            alt="..." />
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="fill" aspect-ratio="4:6">
+          <div animate-in="scale-fade-up">
+            <amp-story-interactive-poll
+            id="GtR7sAtShU+6667067681740e97013ad751" class="center"
+            prompt-text="Which of the following countries is leading in the production of beans?"
+            endpoint="https://playchat.live/storiez/poll"
+            prompt-size="medium" theme="dark" chip-style="transparent"
+            option-1-text="India"  option-1-confetti="🦴"
+option-2-text="China"  option-1-confetti="🦴"
+
+            >
+          </amp-story-interactive-poll>
+          </div>
+        </amp-story-grid-layer>
+      </amp-story-page>
+
+
+
+    </amp-story>
+  </body>
 </html>
+
