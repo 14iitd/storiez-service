@@ -1,6 +1,6 @@
 import requests
 import xml.etree.ElementTree as ET
-
+import json
 # URL of the RSS feed
 url = "https://www.livemint.com/rss/news"
 
@@ -22,11 +22,20 @@ namespaces = {
 for item in root.findall('.//item'):
     title = item.find('title').text.strip()
     description = item.find('description').text.strip()
-    enclosure = item.find('media:content')
-    img_url = enclosure.get('url') if enclosure is not None else 'No image available'
+    url = item.find('link').text.strip()
+    # Define the namespace
+    namespaces = {'media': 'http://search.yahoo.com/mrss/'}
 
-    print(f"Title: {title}")
-    print(f"Description: {description}")
-    print(f"Image URL: {img_url}")
-    print()
+    # Extract the image URL from media:content
+    media_content = item.find('media:content', namespaces)
+    if media_content is not None:
+        image_url = media_content.attrib.get('url')
+    if "default" not in image_url:
+        payload = {"texts": [title, description], "img": image_url, "url": url, "lang": "ENGLISH", "loc": "INDIA",
+                   "cat": "news",
+                   "template": "news"}
+        print(payload)
+        res1 = requests.post("https://playchat.live/storiez/post", data=json.dumps(payload))
+        print(res1.text)
+        print(res1.text)
 

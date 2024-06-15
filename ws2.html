@@ -1,58 +1,1218 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Load URLs in Iframes</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-        .grid-item {
-            border: 1px solid #ccc;
-        }
-        iframe {
-            width: 100%;
-            height: 300px;
-            border: none;
-        }
-    </style>
-</head>
-<body>
-    <h1>Load URLs from API Response in Iframes</h1>
-    <div class="grid-container" id="iframes-container"></div>
+<html amp="" lang="en-US" transformed="self;v=1" i-amphtml-layout="">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,minimum-scale=1">
+        <link rel="modulepreload" href="https://cdn.ampproject.org/v0.mjs" as="script" crossorigin="anonymous">
+        <link rel="preconnect" href="https://cdn.ampproject.org">
+        <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-story-1.0.js">
+        <style amp-runtime="" i-amphtml-version="012405300626000">
+            html {
+                overflow-x: hidden!important
+            }
 
-    <script>
-        async function loadUrls() {
-            const response = await fetch('https://playchat.live/stories/bulk');
-            const data = await response.json();
-             // Assuming the response has a property 'urls' which is an array of URLs
+            html.i-amphtml-fie {
+                height: 100%!important;
+                width: 100%!important
+            }
 
-            const container = document.getElementById('iframes-container');
-            data.slice(0, 15).forEach(item => {
-                const gridItem = document.createElement('div');
-                gridItem.classList.add('grid-item');
+            html:not([amp4ads]),html:not([amp4ads]) body {
+                height: auto!important
+            }
 
-                const iframe = document.createElement('iframe');
-                iframe.src = item.source.url;
+            html:not([amp4ads]) body {
+                margin: 0!important
+            }
 
-                // Add event listener to open iframe in new page when clicked
-                iframe.addEventListener('click', () => {
-                    window.open(iframe.src, '_blank');
-                });
+            body {
+                -webkit-text-size-adjust: 100%;
+                -moz-text-size-adjust: 100%;
+                -ms-text-size-adjust: 100%;
+                text-size-adjust: 100%
+            }
 
-                gridItem.appendChild(iframe);
-                container.appendChild(gridItem);
-            });
-        }
+            html.i-amphtml-singledoc.i-amphtml-embedded {
+                -ms-touch-action: pan-y pinch-zoom;
+                touch-action: pan-y pinch-zoom
+            }
 
-        loadUrls();
-    </script>
-</body>
+            html.i-amphtml-fie>body,html.i-amphtml-singledoc>body {
+                overflow: visible!important
+            }
+
+            html.i-amphtml-fie:not(.i-amphtml-inabox)>body,html.i-amphtml-singledoc:not(.i-amphtml-inabox)>body {
+                position: relative!important
+            }
+
+            html.i-amphtml-ios-embed-legacy>body {
+                overflow-x: hidden!important;
+                overflow-y: auto!important;
+                position: absolute!important
+            }
+
+            html.i-amphtml-ios-embed {
+                overflow-y: auto!important;
+                position: static
+            }
+
+            #i-amphtml-wrapper {
+                overflow-x: hidden!important;
+                overflow-y: auto!important;
+                position: absolute!important;
+                top: 0!important;
+                left: 0!important;
+                right: 0!important;
+                bottom: 0!important;
+                margin: 0!important;
+                display: block!important
+            }
+
+            html.i-amphtml-ios-embed.i-amphtml-ios-overscroll,html.i-amphtml-ios-embed.i-amphtml-ios-overscroll>#i-amphtml-wrapper {
+                -webkit-overflow-scrolling: touch!important
+            }
+
+            #i-amphtml-wrapper>body {
+                position: relative!important;
+                border-top: 1px solid transparent!important
+            }
+
+            #i-amphtml-wrapper+body {
+                visibility: visible
+            }
+
+            #i-amphtml-wrapper+body .i-amphtml-lightbox-element,#i-amphtml-wrapper+body[i-amphtml-lightbox] {
+                visibility: hidden
+            }
+
+            #i-amphtml-wrapper+body[i-amphtml-lightbox] .i-amphtml-lightbox-element {
+                visibility: visible
+            }
+
+            #i-amphtml-wrapper.i-amphtml-scroll-disabled,.i-amphtml-scroll-disabled {
+                overflow-x: hidden!important;
+                overflow-y: hidden!important
+            }
+
+            amp-instagram {
+                padding: 54px 0px 0px!important;
+                background-color: #fff
+            }
+
+            amp-iframe iframe {
+                box-sizing: border-box!important
+            }
+
+            [amp-access][amp-access-hide] {
+                display: none
+            }
+
+            [subscriptions-dialog],body:not(.i-amphtml-subs-ready) [subscriptions-action],body:not(.i-amphtml-subs-ready) [subscriptions-section] {
+                display: none!important
+            }
+
+            amp-experiment,amp-live-list>[update] {
+                display: none
+            }
+
+            amp-list[resizable-children]>.i-amphtml-loading-container.amp-hidden {
+                display: none!important
+            }
+
+            amp-list [fetch-error],amp-list[load-more] [load-more-button],amp-list[load-more] [load-more-end],amp-list[load-more] [load-more-failed],amp-list[load-more] [load-more-loading] {
+                display: none
+            }
+
+            amp-list[diffable] div[role=list] {
+                display: block
+            }
+
+            amp-story-page,amp-story[standalone] {
+                min-height: 1px!important;
+                display: block!important;
+                height: 100%!important;
+                margin: 0!important;
+                padding: 0!important;
+                overflow: hidden!important;
+                width: 100%!important
+            }
+
+            amp-story[standalone] {
+                background-color: #000!important;
+                position: relative!important
+            }
+
+            amp-story-page {
+                background-color: #757575
+            }
+
+            amp-story .amp-active>div,amp-story .i-amphtml-loader-background {
+                display: none!important
+            }
+
+            amp-story-page:not(:first-of-type):not([distance]):not([active]) {
+                transform: translateY(1000vh)!important
+            }
+
+            amp-autocomplete {
+                position: relative!important;
+                display: inline-block!important
+            }
+
+            amp-autocomplete>input,amp-autocomplete>textarea {
+                padding: 0.5rem;
+                border: 1px solid rgba(0,0,0,.33)
+            }
+
+            .i-amphtml-autocomplete-results,amp-autocomplete>input,amp-autocomplete>textarea {
+                font-size: 1rem;
+                line-height: 1.5rem
+            }
+
+            [amp-fx^=fly-in] {
+                visibility: hidden
+            }
+
+            amp-script[nodom],amp-script[sandboxed] {
+                position: fixed!important;
+                top: 0!important;
+                width: 1px!important;
+                height: 1px!important;
+                overflow: hidden!important;
+                visibility: hidden
+            }
+
+            /*# sourceURL=/css/ampdoc.css*/
+            [hidden] {
+                display: none!important
+            }
+
+            .i-amphtml-element {
+                display: inline-block
+            }
+
+            .i-amphtml-blurry-placeholder {
+                transition: opacity 0.3s cubic-bezier(0.0,0.0,0.2,1)!important;
+                pointer-events: none
+            }
+
+            [layout=nodisplay]:not(.i-amphtml-element) {
+                display: none!important
+            }
+
+            .i-amphtml-layout-fixed,[layout=fixed][width][height]:not(.i-amphtml-layout-fixed) {
+                display: inline-block;
+                position: relative
+            }
+
+            .i-amphtml-layout-responsive,[layout=responsive][width][height]:not(.i-amphtml-layout-responsive),[width][height][heights]:not([layout]):not(.i-amphtml-layout-responsive),[width][height][sizes]:not(img):not([layout]):not(.i-amphtml-layout-responsive) {
+                display: block;
+                position: relative
+            }
+
+            .i-amphtml-layout-intrinsic,[layout=intrinsic][width][height]:not(.i-amphtml-layout-intrinsic) {
+                display: inline-block;
+                position: relative;
+                max-width: 100%
+            }
+
+            .i-amphtml-layout-intrinsic .i-amphtml-sizer {
+                max-width: 100%
+            }
+
+            .i-amphtml-intrinsic-sizer {
+                max-width: 100%;
+                display: block!important
+            }
+
+            .i-amphtml-layout-container,.i-amphtml-layout-fixed-height,[layout=container],[layout=fixed-height][height]:not(.i-amphtml-layout-fixed-height) {
+                display: block;
+                position: relative
+            }
+
+            .i-amphtml-layout-fill,.i-amphtml-layout-fill.i-amphtml-notbuilt,[layout=fill]:not(.i-amphtml-layout-fill),body noscript>* {
+                display: block;
+                overflow: hidden!important;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0
+            }
+
+            body noscript>* {
+                position: absolute!important;
+                width: 100%;
+                height: 100%;
+                z-index: 2
+            }
+
+            body noscript {
+                display: inline!important
+            }
+
+            .i-amphtml-layout-flex-item,[layout=flex-item]:not(.i-amphtml-layout-flex-item) {
+                display: block;
+                position: relative;
+                -ms-flex: 1 1 auto;
+                flex: 1 1 auto
+            }
+
+            .i-amphtml-layout-fluid {
+                position: relative
+            }
+
+            .i-amphtml-layout-size-defined {
+                overflow: hidden!important
+            }
+
+            .i-amphtml-layout-awaiting-size {
+                position: absolute!important;
+                top: auto!important;
+                bottom: auto!important
+            }
+
+            i-amphtml-sizer {
+                display: block!important
+            }
+
+            @supports (aspect-ratio: 1/1) {
+                i-amphtml-sizer.i-amphtml-disable-ar {
+                    display:none!important
+                }
+            }
+
+            .i-amphtml-blurry-placeholder,.i-amphtml-fill-content {
+                display: block;
+                height: 0;
+                max-height: 100%;
+                max-width: 100%;
+                min-height: 100%;
+                min-width: 100%;
+                width: 0;
+                margin: auto
+            }
+
+            .i-amphtml-layout-size-defined .i-amphtml-fill-content {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0
+            }
+
+            .i-amphtml-replaced-content,.i-amphtml-screen-reader {
+                padding: 0!important;
+                border: none!important
+            }
+
+            .i-amphtml-screen-reader {
+                position: fixed!important;
+                top: 0px!important;
+                left: 0px!important;
+                width: 4px!important;
+                height: 4px!important;
+                opacity: 0!important;
+                overflow: hidden!important;
+                margin: 0!important;
+                display: block!important;
+                visibility: visible!important
+            }
+
+            .i-amphtml-screen-reader~.i-amphtml-screen-reader {
+                left: 8px!important
+            }
+
+            .i-amphtml-screen-reader~.i-amphtml-screen-reader~.i-amphtml-screen-reader {
+                left: 12px!important
+            }
+
+            .i-amphtml-screen-reader~.i-amphtml-screen-reader~.i-amphtml-screen-reader~.i-amphtml-screen-reader {
+                left: 16px!important
+            }
+
+            .i-amphtml-unresolved {
+                position: relative;
+                overflow: hidden!important
+            }
+
+            .i-amphtml-select-disabled {
+                -webkit-user-select: none!important;
+                -ms-user-select: none!important;
+                user-select: none!important
+            }
+
+            .i-amphtml-notbuilt,[layout]:not(.i-amphtml-element),[width][height][heights]:not([layout]):not(.i-amphtml-element),[width][height][sizes]:not(img):not([layout]):not(.i-amphtml-element) {
+                position: relative;
+                overflow: hidden!important;
+                color: transparent!important
+            }
+
+            .i-amphtml-notbuilt:not(.i-amphtml-layout-container)>*,[layout]:not([layout=container]):not(.i-amphtml-element)>*,[width][height][heights]:not([layout]):not(.i-amphtml-element)>*,[width][height][sizes]:not([layout]):not(.i-amphtml-element)>* {
+                display: none
+            }
+
+            amp-img:not(.i-amphtml-element)[i-amphtml-ssr]>img.i-amphtml-fill-content {
+                display: block
+            }
+
+            .i-amphtml-notbuilt:not(.i-amphtml-layout-container),[layout]:not([layout=container]):not(.i-amphtml-element),[width][height][heights]:not([layout]):not(.i-amphtml-element),[width][height][sizes]:not(img):not([layout]):not(.i-amphtml-element) {
+                color: transparent!important;
+                line-height: 0!important
+            }
+
+            .i-amphtml-ghost {
+                visibility: hidden!important
+            }
+
+            .i-amphtml-element>[placeholder],[layout]:not(.i-amphtml-element)>[placeholder],[width][height][heights]:not([layout]):not(.i-amphtml-element)>[placeholder],[width][height][sizes]:not([layout]):not(.i-amphtml-element)>[placeholder] {
+                display: block;
+                line-height: normal
+            }
+
+            .i-amphtml-element>[placeholder].amp-hidden,.i-amphtml-element>[placeholder].hidden {
+                visibility: hidden
+            }
+
+            .i-amphtml-element:not(.amp-notsupported)>[fallback],.i-amphtml-layout-container>[placeholder].amp-hidden,.i-amphtml-layout-container>[placeholder].hidden {
+                display: none
+            }
+
+            .i-amphtml-layout-size-defined>[fallback],.i-amphtml-layout-size-defined>[placeholder] {
+                position: absolute!important;
+                top: 0!important;
+                left: 0!important;
+                right: 0!important;
+                bottom: 0!important;
+                z-index: 1
+            }
+
+            amp-img[i-amphtml-ssr]:not(.i-amphtml-element)>[placeholder] {
+                z-index: auto
+            }
+
+            .i-amphtml-notbuilt>[placeholder] {
+                display: block!important
+            }
+
+            .i-amphtml-hidden-by-media-query {
+                display: none!important
+            }
+
+            .i-amphtml-element-error {
+                background: red!important;
+                color: #fff!important;
+                position: relative!important
+            }
+
+            .i-amphtml-element-error:before {
+                content: attr(error-message)
+            }
+
+            i-amp-scroll-container,i-amphtml-scroll-container {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                display: block
+            }
+
+            i-amp-scroll-container.amp-active,i-amphtml-scroll-container.amp-active {
+                overflow: auto;
+                -webkit-overflow-scrolling: touch
+            }
+
+            .i-amphtml-loading-container {
+                display: block!important;
+                pointer-events: none;
+                z-index: 1
+            }
+
+            .i-amphtml-notbuilt>.i-amphtml-loading-container {
+                display: block!important
+            }
+
+            .i-amphtml-loading-container.amp-hidden {
+                visibility: hidden
+            }
+
+            .i-amphtml-element>[overflow] {
+                cursor: pointer;
+                position: relative;
+                z-index: 2;
+                visibility: hidden;
+                display: initial;
+                line-height: normal
+            }
+
+            .i-amphtml-layout-size-defined>[overflow] {
+                position: absolute
+            }
+
+            .i-amphtml-element>[overflow].amp-visible {
+                visibility: visible
+            }
+
+            template {
+                display: none!important
+            }
+
+            .amp-border-box,.amp-border-box *,.amp-border-box :after,.amp-border-box :before {
+                box-sizing: border-box
+            }
+
+            amp-pixel {
+                display: none!important
+            }
+
+            amp-analytics,amp-auto-ads,amp-story-auto-ads {
+                position: fixed!important;
+                top: 0!important;
+                width: 1px!important;
+                height: 1px!important;
+                overflow: hidden!important;
+                visibility: hidden
+            }
+
+            amp-story {
+                visibility: hidden!important
+            }
+
+            html.i-amphtml-fie>amp-analytics {
+                position: initial!important
+            }
+
+            [visible-when-invalid]:not(.visible),form [submit-error],form [submit-success],form [submitting] {
+                display: none
+            }
+
+            amp-accordion {
+                display: block!important
+            }
+
+            @media (min-width: 1px) {
+                :where(amp-accordion>section)>:first-child {
+                    margin:0;
+                    background-color: #efefef;
+                    padding-right: 20px;
+                    border: 1px solid #dfdfdf
+                }
+
+                :where(amp-accordion>section)>:last-child {
+                    margin: 0
+                }
+            }
+
+            amp-accordion>section {
+                float: none!important
+            }
+
+            amp-accordion>section>* {
+                float: none!important;
+                display: block!important;
+                overflow: hidden!important;
+                position: relative!important
+            }
+
+            amp-accordion,amp-accordion>section {
+                margin: 0
+            }
+
+            amp-accordion:not(.i-amphtml-built)>section>:last-child {
+                display: none!important
+            }
+
+            amp-accordion:not(.i-amphtml-built)>section[expanded]>:last-child {
+                display: block!important
+            }
+
+            /*# sourceURL=/css/ampshared.css*/
+        </style>
+        <meta name="amp-story-generator-name" content="Web Stories for WordPress">
+        <meta name="amp-story-generator-version" content="1.36.0">
+        <meta name="robots" content="max-image-preview:large">
+        <meta name="description" content="Off-white Banner IND vs CAN 2024, T20 World Cup 2024 Live Streaming: When and where to watch India vs Canada Live? A viral video captured the aftermath of a devastating fire at Gaur City 1 apartment in Greater Noida, caused by an exploding air-conditioning unit. The explosion caused widespread chaos and goods worth lakhs of […]">
+        <meta property="og:locale" content="en-US">
+        <meta property="og:site_name" content="My Blog">
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="">
+        <meta property="og:url" content="https://askriddles.com/facts/web-stories/130/">
+        <meta property="og:description" content="Off-white Banner IND vs CAN 2024, T20 World Cup 2024 Live Streaming: When and where to watch India vs Canada Live? A viral video captured the aftermath of a devastating fire at Gaur City 1 apartment in Greater Noida, caused by an exploding air-conditioning unit. The explosion caused widespread chaos and goods worth lakhs of […]">
+        <meta property="article:published_time" content="2024-06-14T22:53:54+00:00">
+        <meta property="article:modified_time" content="2024-06-15T11:35:54+00:00">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="generator" content="WordPress 6.5.4">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+        <script async="" src="https://cdn.ampproject.org/v0.mjs" type="module" crossorigin="anonymous"></script>
+        <script async nomodule src="https://cdn.ampproject.org/v0.js" crossorigin="anonymous"></script>
+        <script async="" src="https://cdn.ampproject.org/v0/amp-story-1.0.mjs" custom-element="amp-story" type="module" crossorigin="anonymous"></script>
+        <script async nomodule src="https://cdn.ampproject.org/v0/amp-story-1.0.js" crossorigin="anonymous" custom-element="amp-story"></script>
+        <link href="https://fonts.googleapis.com/css2?display=swap&amp;family=Roboto%3Awght%40400%3B700&amp;family=Trykker&amp;family=Darker+Grotesque%3Awght%40900&amp;family=Noto+Sans%3Awght%40700" rel="stylesheet">
+        <style amp-custom="">
+            h1,h3 {
+                font-weight: normal
+            }
+
+            amp-story-page {
+                background-color: #131516
+            }
+
+            amp-story-grid-layer {
+                overflow: visible
+            }
+
+            @media (max-aspect-ratio: 9 / 16) {
+                @media (min-aspect-ratio: 320 / 678) {
+                    amp-story-grid-layer.grid-layer {
+                        margin-top:calc(( 100% / .5625 - 100% / .66666666666667 ) / 2)
+                    }
+                }
+            }
+
+            @media not all and (min-resolution: .001dpcm) {
+                @media {
+                    p.text-wrapper > span {
+                        font-size:calc(100% - .5px)
+                    }
+                }
+            }
+
+            .page-fullbleed-area {
+                position: absolute;
+                overflow: hidden;
+                width: 100%;
+                left: 0;
+                height: calc(1.1851851851852 * 100%);
+                top: calc(( 1 - 1.1851851851852 ) * 100% / 2)
+            }
+
+            .page-safe-area {
+                overflow: visible;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                height: calc(.84375 * 100%);
+                margin: auto 0
+            }
+
+            .mask {
+                position: absolute;
+                overflow: hidden
+            }
+
+            .fill {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: 0
+            }
+
+            @media (prefers-reduced-motion: no-preference) {
+                .animation-wrapper {
+                    opacity: var(--initial-opacity);
+                    transform: var(--initial-transform)
+                }
+            }
+
+            ._d12fb0f {
+                background-color: #839568
+            }
+
+            ._6120891 {
+                position: absolute;
+                pointer-events: none;
+                left: 0;
+                top: -9.25926%;
+                width: 100%;
+                height: 118.51852%;
+                opacity: 1
+            }
+
+            ._89d52dd {
+                pointer-events: initial;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0
+            }
+
+            ._dc67a5c {
+                will-change: transform
+            }
+
+            ._e8cb632 {
+                position: absolute;
+                pointer-events: none;
+                left: -2.6699%;
+                top: 37.86408%;
+                width: 103.8835%;
+                height: 16.18123%;
+                opacity: 1
+            }
+
+            ._25a5434 {
+                display: block;
+                position: absolute;
+                top: 0;
+                height: 100%;
+                width: auto
+            }
+
+            ._0ff52ed {
+                position: absolute;
+                pointer-events: none;
+                left: 3.39806%;
+                top: 33.49515%;
+                width: 96.60194%;
+                height: 11.00324%;
+                opacity: 1
+            }
+
+            ._c485eec {
+                pointer-events: initial;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                border-radius: .50251256281407% .50251256281407% .50251256281407% .50251256281407%/2.9411764705882% 2.9411764705882% 2.9411764705882% 2.9411764705882%
+            }
+
+            ._2e481cd {
+                white-space: pre-line;
+                overflow-wrap: break-word;
+                word-break: break-word;
+                margin: -.067132537688442% 0;
+                font-family: "Roboto",sans-serif;
+                font-size: .307443em;
+                line-height: 1.2;
+                text-align: left;
+                padding: 0;
+                color: #000
+            }
+
+            ._47e5cc9 {
+                font-weight: 700
+            }
+
+            ._d77d1bb {
+                position: absolute;
+                pointer-events: none;
+                left: 3.39806%;
+                top: 47.411%;
+                width: 94.17476%;
+                height: 36.40777%;
+                opacity: 1
+            }
+
+            ._c68fe09 {
+                pointer-events: initial;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                border-radius: .51546391752577% .51546391752577% .51546391752577% .51546391752577%/.88888888888889% .88888888888889% .88888888888889% .88888888888889%
+            }
+
+            ._2ccf663 {
+                white-space: pre-line;
+                overflow-wrap: break-word;
+                word-break: break-word;
+                margin: -.3479381443299% 0;
+                font-family: "Trykker",serif;
+                font-size: .191262em;
+                line-height: 1.4;
+                text-align: left;
+                padding: 0;
+                color: #000
+            }
+
+            ._af3e3cc {
+                letter-spacing: .01em
+            }
+
+            ._c565bd8 {
+                position: absolute;
+                pointer-events: none;
+                left: -.48544%;
+                top: -4.69256%;
+                width: 100.48544%;
+                height: 40.12945%;
+                opacity: 1
+            }
+
+            ._260fbf0 {
+                position: absolute;
+                width: 106.4949%;
+                height: 100%;
+                left: -3.24745%;
+                top: 0%
+            }
+
+            ._f487b87 {
+                position: absolute;
+                pointer-events: none;
+                left: 20.38835%;
+                top: 95.79288%;
+                width: 49.51456%;
+                height: 8.09061%;
+                opacity: 1
+            }
+
+            ._11ec686 {
+                pointer-events: initial;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                border-radius: 9.8039215686275% 9.8039215686275% 9.8039215686275% 9.8039215686275%/40% 40% 40% 40%
+            }
+
+            ._254c3af {
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0
+            }
+
+            ._099dc43 {
+                background-color: #000;
+                will-change: transform
+            }
+
+            ._d2a5d11 {
+                position: absolute;
+                pointer-events: none;
+                left: 33.49515%;
+                top: -12.29773%;
+                width: 48.54369%;
+                height: 3.23625%;
+                opacity: 1
+            }
+
+            ._3bf5a71 {
+                pointer-events: initial;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                border-radius: 1% 1% 1% 1%/10% 10% 10% 10%
+            }
+
+            ._192857f {
+                white-space: pre-line;
+                overflow-wrap: break-word;
+                word-break: break-word;
+                margin: -.1265625% 0;
+                font-family: "Roboto",sans-serif;
+                font-size: .291262em;
+                line-height: 1.2;
+                text-align: left;
+                padding: 0;
+                color: #000
+            }
+
+            ._ec1296b {
+                position: absolute;
+                pointer-events: none;
+                left: 31.06796%;
+                top: 92.0712%;
+                width: 31.06796%;
+                height: 2.75081%;
+                opacity: 1
+            }
+
+            ._588dadd {
+                pointer-events: initial;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                border-radius: 1.5625% 1.5625% 1.5625% 1.5625%/11.764705882353% 11.764705882353% 11.764705882353% 11.764705882353%
+            }
+
+            ._d09548b {
+                white-space: pre-line;
+                overflow-wrap: break-word;
+                word-break: break-word;
+                margin: -.164794921875% 0;
+                font-family: "Roboto",sans-serif;
+                font-size: .242718em;
+                line-height: 1.2;
+                text-align: left;
+                padding: 0;
+                color: #000
+            }
+
+            ._4bbb41a {
+                color: #fff
+            }
+
+            ._c84718f {
+                background-color: #fff
+            }
+
+            ._8328013 {
+                position: absolute;
+                pointer-events: none;
+                left: 17.71845%;
+                top: 12.62136%;
+                width: 76.69903%;
+                height: 32.03883%;
+                opacity: 1
+            }
+
+            ._cb63209 {
+                pointer-events: initial;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                border-radius: .63291139240506% .63291139240506% .63291139240506% .63291139240506%/1.010101010101% 1.010101010101% 1.010101010101% 1.010101010101%
+            }
+
+            ._2e777a4 {
+                white-space: pre-line;
+                overflow-wrap: break-word;
+                word-break: break-word;
+                margin: 3.5354430379747% 0;
+                font-family: "Darker Grotesque",sans-serif;
+                font-size: .79288em;
+                line-height: .9;
+                text-align: left;
+                padding: 0;
+                color: #000
+            }
+
+            ._2315e95 {
+                font-weight: 900
+            }
+
+            ._4920885 {
+                background-color: #0354f2
+            }
+
+            ._28e82c7 {
+                position: absolute;
+                pointer-events: none;
+                left: 17.47573%;
+                top: 22.65372%;
+                width: 70.87379%;
+                height: 20.71197%;
+                opacity: 1
+            }
+
+            ._1e1741e {
+                pointer-events: initial;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                border-radius: .68493150684932% .68493150684932% .68493150684932% .68493150684932%/1.5625% 1.5625% 1.5625% 1.5625%
+            }
+
+            ._8f2ba41 {
+                white-space: pre-line;
+                overflow-wrap: break-word;
+                word-break: break-word;
+                margin: 1.6150684931507% 0;
+                font-family: "Noto Sans",sans-serif;
+                font-size: .582524em;
+                line-height: 1.1;
+                text-align: left;
+                padding: 0;
+                color: #000
+            }
+
+            ._adf6537 {
+                font-weight: 700;
+                color: #f8bc63
+            }
+
+            ._e70e31c {
+                position: absolute;
+                pointer-events: none;
+                left: 22.81553%;
+                top: -5.01618%;
+                width: 92.23301%;
+                height: 77.02265%;
+                opacity: 1
+            }
+
+            ._a1d133f {
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                --initial-opacity: 1;
+                --initial-transform: none
+            }
+
+            ._27eb698 {
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                --initial-opacity: 1;
+                --initial-transform: scale(3)
+            }
+
+            ._f8b6ce8 {
+                pointer-events: initial;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                border-radius: .52631578947368% .52631578947368% .52631578947368% .52631578947368%/.42016806722689% .42016806722689% .42016806722689% .42016806722689%
+            }
+
+            ._ad0a29f {
+                white-space: pre-line;
+                overflow-wrap: break-word;
+                word-break: break-word;
+                margin: -.066611842105263% 0;
+                font-family: "Roboto",sans-serif;
+                font-size: .291262em;
+                line-height: 1.2;
+                text-align: left;
+                padding: 0;
+                color: #000
+            }
+
+            /*# sourceURL=amp-custom.css */
+        </style>
+        <link rel="alternate" type="application/rss+xml" title="My Blog » Feed" href="https://askriddles.com/facts/feed/">
+        <link rel="alternate" type="application/rss+xml" title="My Blog » Comments Feed" href="https://askriddles.com/facts/comments/feed/">
+        <link rel="alternate" type="application/rss+xml" title="My Blog » Stories Feed" href="https://askriddles.com/facts/web-stories/feed/">
+        <title>My Blog</title>
+        <script type="application/ld+json">
+            {
+                "@context": "http:\/\/schema.org",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "My Blog"
+                },
+                "@type": "Article",
+                "mainEntityOfPage": "https:\/\/askriddles.com\/facts\/web-stories\/130\/",
+                "headline": "",
+                "datePublished": "2024-06-14T22:53:54+00:00",
+                "dateModified": "2024-06-15T11:35:54+00:00",
+                "author": {
+                    "@type": "Person",
+                    "name": "admin"
+                }
+            }</script>
+        <link rel="https://api.w.org/" href="https://askriddles.com/facts/wp-json/">
+        <link rel="alternate" type="application/json" href="https://askriddles.com/facts/wp-json/web-stories/v1/web-story/130">
+        <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://askriddles.com/facts/xmlrpc.php?rsd">
+        <link rel="canonical" href="https://askriddles.com/facts/web-stories/130/">
+        <link rel="shortlink" href="https://askriddles.com/facts/?p=130">
+        <link rel="alternate" type="application/json+oembed" href="https://askriddles.com/facts/wp-json/oembed/1.0/embed?url=https%3A%2F%2Faskriddles.com%2Ffacts%2Fweb-stories%2F130%2F">
+        <link rel="alternate" type="text/xml+oembed" href="https://askriddles.com/facts/wp-json/oembed/1.0/embed?url=https%3A%2F%2Faskriddles.com%2Ffacts%2Fweb-stories%2F130%2F&amp;format=xml">
+        <script amp-onerror="">
+            document.querySelector("script[src*='/v0.js']").onerror = function() {
+                document.querySelector('style[amp-boilerplate]').textContent = ''
+            }
+        </script>
+        <style amp-boilerplate="">
+            body {
+                -webkit-animation: -amp-start 8s steps(1,end) 0s 1 normal both;
+                -moz-animation: -amp-start 8s steps(1,end) 0s 1 normal both;
+                -ms-animation: -amp-start 8s steps(1,end) 0s 1 normal both;
+                animation: -amp-start 8s steps(1,end) 0s 1 normal both
+            }
+
+            @-webkit-keyframes -amp-start {
+                from {
+                    visibility: hidden
+                }
+
+                to {
+                    visibility: visible
+                }
+            }
+
+            @-moz-keyframes -amp-start {
+                from {
+                    visibility: hidden
+                }
+
+                to {
+                    visibility: visible
+                }
+            }
+
+            @-ms-keyframes -amp-start {
+                from {
+                    visibility: hidden
+                }
+
+                to {
+                    visibility: visible
+                }
+            }
+
+            @-o-keyframes -amp-start {
+                from {
+                    visibility: hidden
+                }
+
+                to {
+                    visibility: visible
+                }
+            }
+
+            @keyframes -amp-start {
+                from {
+                    visibility: hidden
+                }
+
+                to {
+                    visibility: visible
+                }
+            }
+        </style>
+        <noscript>
+            <style amp-boilerplate="">
+                body {
+                    -webkit-animation: none;
+                    -moz-animation: none;
+                    -ms-animation: none;
+                    animation: none
+                }
+            </style>
+        </noscript>
+        <link rel="stylesheet" amp-extension="amp-story" href="https://cdn.ampproject.org/v0/amp-story-1.0.css">
+        <script amp-story-dvh-polyfill="">
+            "use strict";
+            if (!self.CSS || !CSS.supports || !CSS.supports("height:1dvh")) {
+                function e() {
+                    document.documentElement.style.setProperty("--story-dvh", innerHeight / 100 + "px", "important")
+                }
+                addEventListener("resize", e, {
+                    passive: !0
+                }),
+                e()
+            }
+        </script>
+    </head>
+    <body>
+        <amp-story standalone="" publisher="My Blog" publisher-logo-src="" title="" poster-portrait-src="" data-amp-unvalidated-attrs="publisher-logo-src poster-portrait-src" class="i-amphtml-layout-container" i-amphtml-layout="container">
+            <amp-story-page id="fc6488f4-2e9e-4733-b233-06f71bdffaeb" auto-advance-after="7s" class="i-amphtml-layout-container" i-amphtml-layout="container">
+                <amp-story-grid-layer template="vertical" aspect-ratio="412:618" class="grid-layer i-amphtml-layout-container" i-amphtml-layout="container" style="--aspect-ratio:412/618;">
+                    <div class="_d12fb0f page-fullbleed-area">
+                        <div class="page-safe-area">
+                            <div class="_6120891">
+                                <div class="_89d52dd mask" id="el-bcaa9e8d-29fb-4e5c-a477-5e7f43749b64">
+                                    <div class="_dc67a5c fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </amp-story-grid-layer>
+                <amp-story-grid-layer template="vertical" aspect-ratio="412:618" class="grid-layer i-amphtml-layout-container" i-amphtml-layout="container" style="--aspect-ratio:412/618;">
+                    <div class="page-fullbleed-area">
+                        <div class="page-safe-area">
+                            <div class="_e8cb632">
+                                <div id="el-84478576-0684-4e96-b4ba-ac691030f7fa" class="_89d52dd">
+                                    <svg viewbox="0 0 51 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="_25a5434">
+
+                                        <path d="M50.0394 0.524213C47.1156 0.507352 44.2173 0.29626 41.2907 0.765326C36.8034 1.46836 32.2413 1.32301 27.7338 1.29701C23.8354 1.27453 20.0617 1.90635 16.1631 1.93246C13.434 1.96532 10.7297 1.90113 8.00089 1.88539C6.80702 1.87851 5.63751 1.87176 4.44364 1.86488C3.88325 1.86165 1.61709 2.48944 1.10263 2.97242C0.172287 3.74457 1.91305 5.49486 1.9038 7.09842C1.89596 8.45902 1.69179 10.0615 2.44317 10.7461C2.8795 11.1374 3.58776 10.8499 4.05069 10.8526C4.90346 10.8575 5.75622 10.8624 6.60899 10.8673C9.72768 10.8853 13.0696 10.2243 16.1334 11.311C17.7624 11.9035 19.617 11.4283 21.2738 11.4378C23.223 11.4491 25.1965 11.4605 27.1457 11.4717C30.1669 11.4891 33.2125 11.5067 36.2337 11.5241C37.3789 11.5307 38.524 11.5373 39.6692 11.5439C40.9118 11.5511 42.0835 11.1691 43.3023 11.0789C44.5214 10.9402 45.7674 10.3642 46.9405 9.73927C47.5516 9.40264 48.1602 9.50334 48.7936 9.50699C49.2322 9.50952 49.7912 9.75571 50.1597 9.2233C50.5779 8.54539 50.4633 7.28128 50.6151 6.31026C50.8689 4.56233 50.8299 2.8613 50.8403 1.06337" fill="#F3E9D4"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="_0ff52ed">
+                                <div id="el-9441e04f-19a5-4054-8c74-05e4e1548d27" class="_c485eec">
+                                    <p class="_2e481cd fill text-wrapper">
+                                        <span>
+                                            <span class="_47e5cc9">$headline</span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="_d77d1bb">
+                                <div id="el-08303248-8057-44f4-9920-b9cab9d1dfaf" class="_c68fe09">
+                                    <p class="_2ccf663 fill text-wrapper">
+                                        <span>
+                                            <span class="_af3e3cc"> उत्तराखंड के बद्रीनाथ हाईवे पर शनिवार, 15 जून को सुबह 11 बजे एक टैंपो ट्रैवलर बेकाबू होकर अलकनंदा नदी में गिर गया। हादसे में 12 पर्यटकों की मौत हो गई, जबकि 14 घायल हैं। 7 गंभीर घायलों को हेलिकॉप्टर से एयरलिफ्ट कर ऋषिकेश एम्स में भर्ती किया गया। ट्रैवलर में 26 यात्री सवार थे। सभी बद्रीनाथ दर्शन के लिए जा रहे थे। पर्यटक नोएडा और दिल्ली के हैं। हादसे की वजह ड्राइवर को झपकी लगना बताया जा रहा है। हालांकि, अब तक इस पर प्रशासन का अधिकारिक बयान नहीं आया है। हादसा जहां हुआ, वह ऑल वेदर हाईवे है। ट्रैवलर बाउंड्री तोड़ते हुए करीब 660 फीट (250 मीटर) से ज्यादा नीचे खाई में जा गिरा। नदी का किनारा होने के चलते अलकनंदा के तेज बहाव में ट्रैवलर बहा नहीं। घटनास्थल के नजदीक ही रेलवे प्रोजेक्ट का काम चल रहा है। 3 मजदूर लोगों को बचाने नदी में कूदे। इनमें से 2 वापस आ गए, लेकिन 1 की मौत हो गई। इस वीडियो से समझिए... बस सड़क से नीचे कैसे गिरी होगी दिल्ली-एनसीआर के पर्यटक पुलिस ने बताया कि ट्रैवलर हरियाणा नंबर का है। दिल्ली-एनसीआर में रहने वाले पर्यटकों ने इसकी बुकिंग कराई थी। शुक्रवार शाम को यह दिल्ली से रवाना हुए। रातभर ट्रैवलर चलता रहा। मृतकों की अभी शिनाख्त नहीं हो पाई है। हादसे की 5 तस्वीरें देखिए.... ड्राइवर को झपकी आने की आशंका, जांच के आदेश शुरुआती जांच में ड्राइवर को झपकी आने के चलते हादसा होने की आंशका है, क्योंकि घटना के वक्त हाईवे पर ज्यादा ट्रैफिक नहीं था। डीएम गढ़वाल ने सीएम के आदेश पर हादसे की जांच के आदेश दिए हैं। इसमें ट्रैवलर की भी जांच की जा रही है। उत्तराखंड के सीएम पुष्कर सिंह धामी ने घटना पर दुख जताया है। उन्होंने कहा- स्थानीय प्रशासन और SDRF की टीमें राहत और बचाव कार्यों में जुटी हैं। केंद्रीय गृहमंत्री अमित शाह ने भी हादसे पर दुख जताया है। </span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="_c565bd8">
+                                <div class="_89d52dd mask" id="el-539c85be-babe-4f88-ba1a-5a01fdf81400">
+                                    <div data-leaf-element="true" class="_260fbf0">
+                                        <amp-img layout="fill" src="$img" class="i-amphtml-layout-fill i-amphtml-layout-size-defined" i-amphtml-layout="fill"></amp-img>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="_f487b87">
+                                <div class="_11ec686 mask" id="el-32ca1bf7-77ba-4b39-836a-c09ebfcb9dde">
+                                    <a href="&link" target="_blank" rel="noopener noreferrer" class="_254c3af">
+                                        <div class="_099dc43 fill"></div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="_d2a5d11">
+                                <div id="el-0498734b-f5b6-42f5-9ece-26bd3610d8f2" class="_3bf5a71">
+                                    <p class="_192857f fill text-wrapper">
+                                        <span>storiez.today</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="_ec1296b">
+                                <div id="el-f0054228-d097-405f-90bb-5f82d02c0662" class="_588dadd">
+                                    <p class="_d09548b fill text-wrapper">
+                                        <span>
+                                            <span class="_4bbb41a">click to full story</span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </amp-story-grid-layer>
+            </amp-story-page>
+
+        </amp-story>
+    </body>
 </html>

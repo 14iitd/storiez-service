@@ -26,7 +26,8 @@
       font-size: 0.23em;
       --interactive-prompt-text-color: rgb(0, 0, 0);
     }
-
+    .i-amphtml-story-interactive-active:not(.i-amphtml-story-interactive-post-selection) .i-amphtml-story-interactive-option:before {
+    background-color: #f00;}
 
 
     </style>
@@ -46,18 +47,19 @@
         <amp-story-grid-layer template="fill" style="background-color: white">
           <amp-img style="opacity:0.7"
             layout="fixed" width="1600" height="1200"
-            src="https://images.unsplash.com/photo-1585834377618-3d85069b884e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fHBvc3RlciUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D"
+            src="https://images.unsplash.com/photo-1531315630201-bb15abeb1653?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmFja2dyb3VuZHxlbnwwfDF8MHx8fDI%3D"
             alt="..." />
         </amp-story-grid-layer>
         <amp-story-grid-layer template="fill" aspect-ratio="4:6">
           <div animate-in="scale-fade-up">
             <amp-story-interactive-poll
-            id="GtR7sAtShU+6667067681740e97013ad751" class="center"
-            prompt-text="Which of the following countries is leading in the production of beans?"
+            id="LHoKkDTi8W+666c692b9bc258a5fe5f4a84" class="center"
+            prompt-text="Aureolin is a shade of what color?"
             endpoint="https://playchat.live/storiez/poll"
             prompt-size="medium" theme="dark" chip-style="transparent"
-            option-1-text="India"  option-1-confetti="🦴"
-option-2-text="China"  option-1-confetti="🦴"
+            option-1-text="Yellow"  option-1-confetti="💙"
+option-2-text="Orange"  option-2-confetti="💙"
+option-3-text="Green"  option-3-confetti="💙"
 
             >
           </amp-story-interactive-poll>
