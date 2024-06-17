@@ -32,3 +32,4 @@ for item in items:
     res1=requests.post("https://playchat.live/storiez/post",data=json.dumps(payload))
     print(res1.text)
     print(res1.text)
+
