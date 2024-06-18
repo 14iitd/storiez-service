@@ -1,75 +1,1139 @@
+<!DOCTYPE html>
+<html amp="" lang="en-US" transformed="self;v=1" i-amphtml-layout="">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,minimum-scale=1">
+        <link rel="modulepreload" href="https://cdn.ampproject.org/v0.mjs" as="script" crossorigin="anonymous">
+        <link rel="preconnect" href="https://cdn.ampproject.org">
+        <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-story-1.0.js">
+        <style amp-runtime="" i-amphtml-version="012405300626000">
+            html {
+                overflow-x: hidden!important
+            }
 
+            html.i-amphtml-fie {
+                height: 100%!important;
+                width: 100%!important
+            }
 
-<!doctype html>
-<html ⚡ lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <meta name="description" content="This is an interactive story with polls.">
-    <link rel="preload" as="script" href="https://ampjs.org/v0.js">
-    <link rel="preload" as="script" href="https://ampjs.org/v0/amp-story-1.0.js">
-    <script async src="https://ampjs.org/v0.js"></script>
-    <script async custom-element="amp-story" src="https://ampjs.org/v0/amp-story-1.0.js"></script>
-    <!-- To begin, import `amp-story-interactive` along your other stories imports. -->
-    <script async custom-element="amp-story-interactive" src="https://ampjs.org/v0/amp-story-interactive-0.1.js"></script>
-    <script>
-      var ampId=1212312312123;
-      var client_ID=1212312312123;
-    </script>
-    <style amp-custom>
-    .center {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 22em;
-      font-size: 0.23em;
-      --interactive-prompt-text-color: rgb(0, 0, 0);
-    }
-    .i-amphtml-story-interactive-active:not(.i-amphtml-story-interactive-post-selection) .i-amphtml-story-interactive-option:before {
-    background-color: #f00;}
+            html:not([amp4ads]),html:not([amp4ads]) body {
+                height: auto!important
+            }
 
+            html:not([amp4ads]) body {
+                margin: 0!important
+            }
 
-    </style>
-    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-    <link rel="canonical" href=".">
-    <title>Interactive polls with results</title>
-  </head>
-  <body>
-    <amp-story standalone
-      publisher="Stories Format"
-      title="Name that artist"
-      poster-portrait-src="./last_supper.jpg"
-      publisher-logo-src="https://amp.dev/static/img/icons/icon-512x512.png">
+            body {
+                -webkit-text-size-adjust: 100%;
+                -moz-text-size-adjust: 100%;
+                -ms-text-size-adjust: 100%;
+                text-size-adjust: 100%
+            }
 
+            html.i-amphtml-singledoc.i-amphtml-embedded {
+                -ms-touch-action: pan-y pinch-zoom;
+                touch-action: pan-y pinch-zoom
+            }
 
-      <amp-story-page id="abhishek ranjan">
-        <amp-story-grid-layer template="fill" style="background-color: white">
-          <amp-img style="opacity:0.7"
-            layout="fixed" width="1600" height="1200"
-            src="https://images.unsplash.com/photo-1531315630201-bb15abeb1653?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmFja2dyb3VuZHxlbnwwfDF8MHx8fDI%3D"
-            alt="..." />
-        </amp-story-grid-layer>
-        <amp-story-grid-layer template="fill" aspect-ratio="4:6">
-          <div animate-in="scale-fade-up">
-            <amp-story-interactive-poll
-            id="LHoKkDTi8W+666c692b9bc258a5fe5f4a84" class="center"
-            prompt-text="Aureolin is a shade of what color?"
-            endpoint="https://playchat.live/storiez/poll"
-            prompt-size="medium" theme="dark" chip-style="transparent"
-            option-1-text="Yellow"  option-1-confetti="💙"
-option-2-text="Orange"  option-2-confetti="💙"
-option-3-text="Green"  option-3-confetti="💙"
+            html.i-amphtml-fie>body,html.i-amphtml-singledoc>body {
+                overflow: visible!important
+            }
 
-            >
-          </amp-story-interactive-poll>
-          </div>
-        </amp-story-grid-layer>
-      </amp-story-page>
+            html.i-amphtml-fie:not(.i-amphtml-inabox)>body,html.i-amphtml-singledoc:not(.i-amphtml-inabox)>body {
+                position: relative!important
+            }
 
+            html.i-amphtml-ios-embed-legacy>body {
+                overflow-x: hidden!important;
+                overflow-y: auto!important;
+                position: absolute!important
+            }
 
+            html.i-amphtml-ios-embed {
+                overflow-y: auto!important;
+                position: static
+            }
 
-    </amp-story>
-  </body>
+            #i-amphtml-wrapper {
+                overflow-x: hidden!important;
+                overflow-y: auto!important;
+                position: absolute!important;
+                top: 0!important;
+                left: 0!important;
+                right: 0!important;
+                bottom: 0!important;
+                margin: 0!important;
+                display: block!important
+            }
+
+            html.i-amphtml-ios-embed.i-amphtml-ios-overscroll,html.i-amphtml-ios-embed.i-amphtml-ios-overscroll>#i-amphtml-wrapper {
+                -webkit-overflow-scrolling: touch!important
+            }
+
+            #i-amphtml-wrapper>body {
+                position: relative!important;
+                border-top: 1px solid transparent!important
+            }
+
+            #i-amphtml-wrapper+body {
+                visibility: visible
+            }
+
+            #i-amphtml-wrapper+body .i-amphtml-lightbox-element,#i-amphtml-wrapper+body[i-amphtml-lightbox] {
+                visibility: hidden
+            }
+
+            #i-amphtml-wrapper+body[i-amphtml-lightbox] .i-amphtml-lightbox-element {
+                visibility: visible
+            }
+
+            #i-amphtml-wrapper.i-amphtml-scroll-disabled,.i-amphtml-scroll-disabled {
+                overflow-x: hidden!important;
+                overflow-y: hidden!important
+            }
+
+            amp-instagram {
+                padding: 54px 0px 0px!important;
+                background-color: #fff
+            }
+
+            amp-iframe iframe {
+                box-sizing: border-box!important
+            }
+
+            [amp-access][amp-access-hide] {
+                display: none
+            }
+
+            [subscriptions-dialog],body:not(.i-amphtml-subs-ready) [subscriptions-action],body:not(.i-amphtml-subs-ready) [subscriptions-section] {
+                display: none!important
+            }
+
+            amp-experiment,amp-live-list>[update] {
+                display: none
+            }
+
+            amp-list[resizable-children]>.i-amphtml-loading-container.amp-hidden {
+                display: none!important
+            }
+
+            amp-list [fetch-error],amp-list[load-more] [load-more-button],amp-list[load-more] [load-more-end],amp-list[load-more] [load-more-failed],amp-list[load-more] [load-more-loading] {
+                display: none
+            }
+
+            amp-list[diffable] div[role=list] {
+                display: block
+            }
+
+            amp-story-page,amp-story[standalone] {
+                min-height: 1px!important;
+                display: block!important;
+                height: 100%!important;
+                margin: 0!important;
+                padding: 0!important;
+                overflow: hidden!important;
+                width: 100%!important
+            }
+
+            amp-story[standalone] {
+                background-color: #000!important;
+                position: relative!important
+            }
+
+            amp-story-page {
+                background-color: #757575
+            }
+
+            amp-story .amp-active>div,amp-story .i-amphtml-loader-background {
+                display: none!important
+            }
+
+            amp-story-page:not(:first-of-type):not([distance]):not([active]) {
+                transform: translateY(1000vh)!important
+            }
+
+            amp-autocomplete {
+                position: relative!important;
+                display: inline-block!important
+            }
+
+            amp-autocomplete>input,amp-autocomplete>textarea {
+                padding: 0.5rem;
+                border: 1px solid rgba(0,0,0,.33)
+            }
+
+            .i-amphtml-autocomplete-results,amp-autocomplete>input,amp-autocomplete>textarea {
+                font-size: 1rem;
+                line-height: 1.5rem
+            }
+
+            [amp-fx^=fly-in] {
+                visibility: hidden
+            }
+
+            amp-script[nodom],amp-script[sandboxed] {
+                position: fixed!important;
+                top: 0!important;
+                width: 1px!important;
+                height: 1px!important;
+                overflow: hidden!important;
+                visibility: hidden
+            }
+
+            /*# sourceURL=/css/ampdoc.css*/
+            [hidden] {
+                display: none!important
+            }
+
+            .i-amphtml-element {
+                display: inline-block
+            }
+
+            .i-amphtml-blurry-placeholder {
+                transition: opacity 0.3s cubic-bezier(0.0,0.0,0.2,1)!important;
+                pointer-events: none
+            }
+
+            [layout=nodisplay]:not(.i-amphtml-element) {
+                display: none!important
+            }
+
+            .i-amphtml-layout-fixed,[layout=fixed][width][height]:not(.i-amphtml-layout-fixed) {
+                display: inline-block;
+                position: relative
+            }
+
+            .i-amphtml-layout-responsive,[layout=responsive][width][height]:not(.i-amphtml-layout-responsive),[width][height][heights]:not([layout]):not(.i-amphtml-layout-responsive),[width][height][sizes]:not(img):not([layout]):not(.i-amphtml-layout-responsive) {
+                display: block;
+                position: relative
+            }
+
+            .i-amphtml-layout-intrinsic,[layout=intrinsic][width][height]:not(.i-amphtml-layout-intrinsic) {
+                display: inline-block;
+                position: relative;
+                max-width: 100%
+            }
+
+            .i-amphtml-layout-intrinsic .i-amphtml-sizer {
+                max-width: 100%
+            }
+
+            .i-amphtml-intrinsic-sizer {
+                max-width: 100%;
+                display: block!important
+            }
+
+            .i-amphtml-layout-container,.i-amphtml-layout-fixed-height,[layout=container],[layout=fixed-height][height]:not(.i-amphtml-layout-fixed-height) {
+                display: block;
+                position: relative
+            }
+
+            .i-amphtml-layout-fill,.i-amphtml-layout-fill.i-amphtml-notbuilt,[layout=fill]:not(.i-amphtml-layout-fill),body noscript>* {
+                display: block;
+                overflow: hidden!important;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0
+            }
+
+            body noscript>* {
+                position: absolute!important;
+                width: 100%;
+                height: 100%;
+                z-index: 2
+            }
+
+            body noscript {
+                display: inline!important
+            }
+
+            .i-amphtml-layout-flex-item,[layout=flex-item]:not(.i-amphtml-layout-flex-item) {
+                display: block;
+                position: relative;
+                -ms-flex: 1 1 auto;
+                flex: 1 1 auto
+            }
+
+            .i-amphtml-layout-fluid {
+                position: relative
+            }
+
+            .i-amphtml-layout-size-defined {
+                overflow: hidden!important
+            }
+
+            .i-amphtml-layout-awaiting-size {
+                position: absolute!important;
+                top: auto!important;
+                bottom: auto!important
+            }
+
+            i-amphtml-sizer {
+                display: block!important
+            }
+
+            @supports (aspect-ratio: 1/1) {
+                i-amphtml-sizer.i-amphtml-disable-ar {
+                    display:none!important
+                }
+            }
+
+            .i-amphtml-blurry-placeholder,.i-amphtml-fill-content {
+                display: block;
+                height: 0;
+                max-height: 100%;
+                max-width: 100%;
+                min-height: 100%;
+                min-width: 100%;
+                width: 0;
+                margin: auto
+            }
+
+            .i-amphtml-layout-size-defined .i-amphtml-fill-content {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0
+            }
+
+            .i-amphtml-replaced-content,.i-amphtml-screen-reader {
+                padding: 0!important;
+                border: none!important
+            }
+
+            .i-amphtml-screen-reader {
+                position: fixed!important;
+                top: 0px!important;
+                left: 0px!important;
+                width: 4px!important;
+                height: 4px!important;
+                opacity: 0!important;
+                overflow: hidden!important;
+                margin: 0!important;
+                display: block!important;
+                visibility: visible!important
+            }
+
+            .i-amphtml-screen-reader~.i-amphtml-screen-reader {
+                left: 8px!important
+            }
+
+            .i-amphtml-screen-reader~.i-amphtml-screen-reader~.i-amphtml-screen-reader {
+                left: 12px!important
+            }
+
+            .i-amphtml-screen-reader~.i-amphtml-screen-reader~.i-amphtml-screen-reader~.i-amphtml-screen-reader {
+                left: 16px!important
+            }
+
+            .i-amphtml-unresolved {
+                position: relative;
+                overflow: hidden!important
+            }
+
+            .i-amphtml-select-disabled {
+                -webkit-user-select: none!important;
+                -ms-user-select: none!important;
+                user-select: none!important
+            }
+
+            .i-amphtml-notbuilt,[layout]:not(.i-amphtml-element),[width][height][heights]:not([layout]):not(.i-amphtml-element),[width][height][sizes]:not(img):not([layout]):not(.i-amphtml-element) {
+                position: relative;
+                overflow: hidden!important;
+                color: transparent!important
+            }
+
+            .i-amphtml-notbuilt:not(.i-amphtml-layout-container)>*,[layout]:not([layout=container]):not(.i-amphtml-element)>*,[width][height][heights]:not([layout]):not(.i-amphtml-element)>*,[width][height][sizes]:not([layout]):not(.i-amphtml-element)>* {
+                display: none
+            }
+
+            amp-img:not(.i-amphtml-element)[i-amphtml-ssr]>img.i-amphtml-fill-content {
+                display: block
+            }
+
+            .i-amphtml-notbuilt:not(.i-amphtml-layout-container),[layout]:not([layout=container]):not(.i-amphtml-element),[width][height][heights]:not([layout]):not(.i-amphtml-element),[width][height][sizes]:not(img):not([layout]):not(.i-amphtml-element) {
+                color: transparent!important;
+                line-height: 0!important
+            }
+
+            .i-amphtml-ghost {
+                visibility: hidden!important
+            }
+
+            .i-amphtml-element>[placeholder],[layout]:not(.i-amphtml-element)>[placeholder],[width][height][heights]:not([layout]):not(.i-amphtml-element)>[placeholder],[width][height][sizes]:not([layout]):not(.i-amphtml-element)>[placeholder] {
+                display: block;
+                line-height: normal
+            }
+
+            .i-amphtml-element>[placeholder].amp-hidden,.i-amphtml-element>[placeholder].hidden {
+                visibility: hidden
+            }
+
+            .i-amphtml-element:not(.amp-notsupported)>[fallback],.i-amphtml-layout-container>[placeholder].amp-hidden,.i-amphtml-layout-container>[placeholder].hidden {
+                display: none
+            }
+
+            .i-amphtml-layout-size-defined>[fallback],.i-amphtml-layout-size-defined>[placeholder] {
+                position: absolute!important;
+                top: 0!important;
+                left: 0!important;
+                right: 0!important;
+                bottom: 0!important;
+                z-index: 1
+            }
+
+            amp-img[i-amphtml-ssr]:not(.i-amphtml-element)>[placeholder] {
+                z-index: auto
+            }
+
+            .i-amphtml-notbuilt>[placeholder] {
+                display: block!important
+            }
+
+            .i-amphtml-hidden-by-media-query {
+                display: none!important
+            }
+
+            .i-amphtml-element-error {
+                background: red!important;
+                color: #fff!important;
+                position: relative!important
+            }
+
+            .i-amphtml-element-error:before {
+                content: attr(error-message)
+            }
+
+            i-amp-scroll-container,i-amphtml-scroll-container {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                display: block
+            }
+
+            i-amp-scroll-container.amp-active,i-amphtml-scroll-container.amp-active {
+                overflow: auto;
+                -webkit-overflow-scrolling: touch
+            }
+
+            .i-amphtml-loading-container {
+                display: block!important;
+                pointer-events: none;
+                z-index: 1
+            }
+
+            .i-amphtml-notbuilt>.i-amphtml-loading-container {
+                display: block!important
+            }
+
+            .i-amphtml-loading-container.amp-hidden {
+                visibility: hidden
+            }
+
+            .i-amphtml-element>[overflow] {
+                cursor: pointer;
+                position: relative;
+                z-index: 2;
+                visibility: hidden;
+                display: initial;
+                line-height: normal
+            }
+
+            .i-amphtml-layout-size-defined>[overflow] {
+                position: absolute
+            }
+
+            .i-amphtml-element>[overflow].amp-visible {
+                visibility: visible
+            }
+
+            template {
+                display: none!important
+            }
+
+            .amp-border-box,.amp-border-box *,.amp-border-box :after,.amp-border-box :before {
+                box-sizing: border-box
+            }
+
+            amp-pixel {
+                display: none!important
+            }
+
+            amp-analytics,amp-auto-ads,amp-story-auto-ads {
+                position: fixed!important;
+                top: 0!important;
+                width: 1px!important;
+                height: 1px!important;
+                overflow: hidden!important;
+                visibility: hidden
+            }
+
+            amp-story {
+                visibility: hidden!important
+            }
+
+            html.i-amphtml-fie>amp-analytics {
+                position: initial!important
+            }
+
+            [visible-when-invalid]:not(.visible),form [submit-error],form [submit-success],form [submitting] {
+                display: none
+            }
+
+            amp-accordion {
+                display: block!important
+            }
+
+            @media (min-width: 1px) {
+                :where(amp-accordion>section)>:first-child {
+                    margin:0;
+                    background-color: #efefef;
+                    padding-right: 20px;
+                    border: 1px solid #dfdfdf
+                }
+
+                :where(amp-accordion>section)>:last-child {
+                    margin: 0
+                }
+            }
+
+            amp-accordion>section {
+                float: none!important
+            }
+
+            amp-accordion>section>* {
+                float: none!important;
+                display: block!important;
+                overflow: hidden!important;
+                position: relative!important
+            }
+
+            amp-accordion,amp-accordion>section {
+                margin: 0
+            }
+
+            amp-accordion:not(.i-amphtml-built)>section>:last-child {
+                display: none!important
+            }
+
+            amp-accordion:not(.i-amphtml-built)>section[expanded]>:last-child {
+                display: block!important
+            }
+
+            /*# sourceURL=/css/ampshared.css*/
+        </style>
+        <meta name="amp-story-generator-name" content="Web Stories for WordPress">
+        <meta name="amp-story-generator-version" content="1.36.0">
+        <meta name="robots" content="max-image-preview:large">
+        <meta name="description" content="$quote $author $quote – $author">
+        <meta property="og:locale" content="en-US">
+        <meta property="og:site_name" content="My Blog">
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="">
+        <meta property="og:url" content="https://askriddles.com/facts/web-stories/130/">
+        <meta property="og:description" content="$quote $author $quote – $author">
+        <meta property="article:published_time" content="2024-06-17T13:53:30+00:00">
+        <meta property="article:modified_time" content="2024-06-17T14:16:08+00:00">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="generator" content="WordPress 6.5.4">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+        <script async="" src="https://cdn.ampproject.org/v0.mjs" type="module" crossorigin="anonymous"></script>
+        <script async nomodule src="https://cdn.ampproject.org/v0.js" crossorigin="anonymous"></script>
+        <script async="" src="https://cdn.ampproject.org/v0/amp-story-1.0.mjs" custom-element="amp-story" type="module" crossorigin="anonymous"></script>
+        <script async nomodule src="https://cdn.ampproject.org/v0/amp-story-1.0.js" crossorigin="anonymous" custom-element="amp-story"></script>
+        <link href="https://fonts.googleapis.com/css2?display=swap&amp;family=Poppins%3Awght%40400%3B700&amp;family=Source+Serif+4%3Awght%40300&amp;family=Work+Sans" rel="stylesheet">
+        <style amp-custom="">
+            h1 {
+                font-weight: normal
+            }
+
+            amp-story-page {
+                background-color: #131516
+            }
+
+            amp-story-grid-layer {
+                overflow: visible
+            }
+
+            @media (max-aspect-ratio: 9 / 16) {
+                @media (min-aspect-ratio: 320 / 678) {
+                    amp-story-grid-layer.grid-layer {
+                        margin-top:calc(( 100% / .5625 - 100% / .66666666666667 ) / 2)
+                    }
+                }
+            }
+
+            @media not all and (min-resolution: .001dpcm) {
+                @media {
+                    p.text-wrapper > span {
+                        font-size:calc(100% - .5px)
+                    }
+                }
+            }
+
+            .page-fullbleed-area {
+                position: absolute;
+                overflow: hidden;
+                width: 100%;
+                left: 0;
+                height: calc(1.1851851851852 * 100%);
+                top: calc(( 1 - 1.1851851851852 ) * 100% / 2)
+            }
+
+            .page-safe-area {
+                overflow: visible;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                height: calc(.84375 * 100%);
+                margin: auto 0
+            }
+
+            .mask {
+                position: absolute;
+                overflow: hidden
+            }
+
+            .fill {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: 0
+            }
+
+            @media (prefers-reduced-motion: no-preference) {
+                .animation-wrapper {
+                    opacity: var(--initial-opacity);
+                    transform: var(--initial-transform)
+                }
+            }
+
+            ._f09cc7b {
+                background-color: $color
+            }
+
+            ._6120891 {
+                position: absolute;
+                pointer-events: none;
+                left: 0;
+                top: -9.25926%;
+                width: 100%;
+                height: 118.51852%;
+                opacity: 1
+            }
+
+            ._89d52dd {
+                pointer-events: initial;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0
+            }
+
+            ._dc67a5c {
+                will-change: transform
+            }
+
+            ._d1a27f8 {
+                position: absolute;
+                pointer-events: none;
+                left: 25.48544%;
+                top: 33.00971%;
+                width: 81.79612%;
+                height: 8.25243%;
+                opacity: 1
+            }
+
+            ._894086c {
+                pointer-events: initial;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                border-radius: .59347181008902% .59347181008902% .59347181008902% .59347181008902%/3.921568627451% 3.921568627451% 3.921568627451% 3.921568627451%
+            }
+
+            ._e4fae6c {
+                white-space: pre-line;
+                overflow-wrap: break-word;
+                word-break: break-word;
+                margin: 1.0682492581602% 0;
+                font-family: "Poppins",sans-serif;
+                font-size: .582524em;
+                line-height: 1.2;
+                text-align: left;
+                padding: 0;
+                color: #000
+            }
+
+            ._886e10f {
+                font-weight: 700;
+                color: #f9fcf4
+            }
+
+            ._5d27ef9 {
+                position: absolute;
+                pointer-events: none;
+                left: 33.73786%;
+                top: 62.62136%;
+                width: 33.00971%;
+                height: 3.8835%;
+                opacity: 1
+            }
+
+            ._75da10d {
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                --initial-opacity: 0;
+                --initial-transform: none
+            }
+
+            ._78119e0 {
+                pointer-events: initial;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                border-radius: 1.4705882352941% 1.4705882352941% 1.4705882352941% 1.4705882352941%/8.3333333333333% 8.3333333333333% 8.3333333333333% 8.3333333333333%
+            }
+
+            ._3c49000 {
+                white-space: pre-line;
+                overflow-wrap: break-word;
+                word-break: break-word;
+                margin: 1.3235294117647% 0;
+                font-family: "Poppins",sans-serif;
+                font-size: .291262em;
+                line-height: 1.2;
+                text-align: left;
+                padding: 0;
+                color: #000
+            }
+
+            ._e862c37 {
+                color: #f9fcf4
+            }
+
+            ._c84718f {
+                background-color: #fff
+            }
+
+            ._11363d9 {
+                position: absolute;
+                pointer-events: none;
+                left: -39.32039%;
+                top: 83.00971%;
+                width: 164.80583%;
+                height: 66.18123%;
+                opacity: 1
+            }
+
+            ._528a8ca {
+                pointer-events: initial;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                clip-path: url("#el-1fcdaad7-a0bf-430f-a2db-009e1c630ca7");
+                -webkit-clip-path: url("#el-1fcdaad7-a0bf-430f-a2db-009e1c630ca7")
+            }
+
+            ._2410297 {
+                background-color: #1f2a2e;
+                will-change: transform
+            }
+
+            ._4238e10 {
+                position: absolute;
+                pointer-events: none;
+                left: -47.81553%;
+                top: 3.39806%;
+                width: 155.09709%;
+                height: 107.9288%;
+                opacity: 1
+            }
+
+            ._64ca198 {
+                pointer-events: initial;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                clip-path: url("#el-b3bf643a-52b5-449b-82d1-23fbb5949b7e");
+                -webkit-clip-path: url("#el-b3bf643a-52b5-449b-82d1-23fbb5949b7e")
+            }
+
+            ._a0a0f64 {
+                background-color: rgba(251,235,186,.5);
+                will-change: transform
+            }
+
+            ._d2f70c4 {
+                position: absolute;
+                pointer-events: none;
+                left: -23.78641%;
+                top: -13.1068%;
+                width: 166.26214%;
+                height: 111.16505%;
+                opacity: 1
+            }
+
+            ._df62e37 {
+                pointer-events: initial;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                clip-path: url("#el-dfa2f49e-5416-4d12-b4de-ae054d675216");
+                -webkit-clip-path: url("#el-dfa2f49e-5416-4d12-b4de-ae054d675216")
+            }
+
+            ._b9870c5 {
+                background-color: #d8d8d8;
+                will-change: transform
+            }
+
+            ._d08f67f {
+                position: absolute;
+                pointer-events: none;
+                left: 2.91262%;
+                top: 16.50485%;
+                width: 88.83495%;
+                height: 11.48867%;
+                opacity: 1
+            }
+
+            ._f522543 {
+                white-space: pre-line;
+                overflow-wrap: break-word;
+                word-break: break-word;
+                margin: 1.9251366120219% 0;
+                font-family: "Source Serif 4",serif;
+                font-size: .841424em;
+                line-height: 1.1;
+                text-align: center;
+                padding: 0;
+                color: #000
+            }
+
+            ._d5c04a4 {
+                font-weight: 300;
+                color: #2b393e
+            }
+
+            ._ded5015 {
+                position: absolute;
+                pointer-events: none;
+                left: 31.79612%;
+                top: 61.97411%;
+                width: 36.40777%;
+                height: 5.98706%;
+                opacity: 1
+            }
+
+            ._b305b51 {
+                white-space: pre-line;
+                overflow-wrap: break-word;
+                word-break: break-word;
+                margin: -.635% 0;
+                font-family: "Work Sans",sans-serif;
+                font-size: .242718em;
+                line-height: 1.3;
+                text-align: center;
+                padding: 0;
+                color: #000
+            }
+
+            ._acd44ff {
+                color: #2b393e;
+                text-transform: uppercase
+            }
+
+            /*# sourceURL=amp-custom.css */
+        </style>
+        <link rel="alternate" type="application/rss+xml" title="My Blog » Feed" href="https://askriddles.com/facts/feed/">
+        <link rel="alternate" type="application/rss+xml" title="My Blog » Comments Feed" href="https://askriddles.com/facts/comments/feed/">
+        <link rel="alternate" type="application/rss+xml" title="My Blog » Stories Feed" href="https://askriddles.com/facts/web-stories/feed/">
+        <title>My Blog</title>
+        <script type="application/ld+json">
+            {
+                "@context": "http:\/\/schema.org",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "My Blog"
+                },
+                "@type": "Article",
+                "mainEntityOfPage": "https:\/\/askriddles.com\/facts\/web-stories\/130\/",
+                "headline": "",
+                "datePublished": "2024-06-17T13:53:30+00:00",
+                "dateModified": "2024-06-17T14:16:08+00:00",
+                "author": {
+                    "@type": "Person",
+                    "name": "admin"
+                }
+            }</script>
+        <link rel="https://api.w.org/" href="https://askriddles.com/facts/wp-json/">
+        <link rel="alternate" type="application/json" href="https://askriddles.com/facts/wp-json/web-stories/v1/web-story/130">
+        <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://askriddles.com/facts/xmlrpc.php?rsd">
+        <link rel="canonical" href="https://askriddles.com/facts/web-stories/130/">
+        <link rel="shortlink" href="https://askriddles.com/facts/?p=130">
+        <link rel="alternate" type="application/json+oembed" href="https://askriddles.com/facts/wp-json/oembed/1.0/embed?url=https%3A%2F%2Faskriddles.com%2Ffacts%2Fweb-stories%2F130%2F">
+        <link rel="alternate" type="text/xml+oembed" href="https://askriddles.com/facts/wp-json/oembed/1.0/embed?url=https%3A%2F%2Faskriddles.com%2Ffacts%2Fweb-stories%2F130%2F&amp;format=xml">
+        <script amp-onerror="">
+            document.querySelector("script[src*='/v0.js']").onerror = function() {
+                document.querySelector('style[amp-boilerplate]').textContent = ''
+            }
+        </script>
+        <style amp-boilerplate="">
+            body {
+                -webkit-animation: -amp-start 8s steps(1,end) 0s 1 normal both;
+                -moz-animation: -amp-start 8s steps(1,end) 0s 1 normal both;
+                -ms-animation: -amp-start 8s steps(1,end) 0s 1 normal both;
+                animation: -amp-start 8s steps(1,end) 0s 1 normal both
+            }
+
+            @-webkit-keyframes -amp-start {
+                from {
+                    visibility: hidden
+                }
+
+                to {
+                    visibility: visible
+                }
+            }
+
+            @-moz-keyframes -amp-start {
+                from {
+                    visibility: hidden
+                }
+
+                to {
+                    visibility: visible
+                }
+            }
+
+            @-ms-keyframes -amp-start {
+                from {
+                    visibility: hidden
+                }
+
+                to {
+                    visibility: visible
+                }
+            }
+
+            @-o-keyframes -amp-start {
+                from {
+                    visibility: hidden
+                }
+
+                to {
+                    visibility: visible
+                }
+            }
+
+            @keyframes -amp-start {
+                from {
+                    visibility: hidden
+                }
+
+                to {
+                    visibility: visible
+                }
+            }
+        </style>
+        <noscript>
+            <style amp-boilerplate="">
+                body {
+                    -webkit-animation: none;
+                    -moz-animation: none;
+                    -ms-animation: none;
+                    animation: none
+                }
+            </style>
+        </noscript>
+        <link rel="stylesheet" amp-extension="amp-story" href="https://cdn.ampproject.org/v0/amp-story-1.0.css">
+        <script amp-story-dvh-polyfill="">
+            "use strict";
+            if (!self.CSS || !CSS.supports || !CSS.supports("height:1dvh")) {
+                function e() {
+                    document.documentElement.style.setProperty("--story-dvh", innerHeight / 100 + "px", "important")
+                }
+                addEventListener("resize", e, {
+                    passive: !0
+                }),
+                e()
+            }
+        </script>
+    </head>
+    <body>
+        <amp-story standalone="" publisher="My Blog" publisher-logo-src="" title="" poster-portrait-src="" data-amp-unvalidated-attrs="publisher-logo-src poster-portrait-src" class="i-amphtml-layout-container" i-amphtml-layout="container">
+            <amp-story-page id="0b36bcb6-371c-43aa-ad89-c58aea075432" auto-advance-after="7s" class="i-amphtml-layout-container" i-amphtml-layout="container">
+                <amp-story-animation layout="nodisplay" trigger="visibility" class="i-amphtml-layout-nodisplay" hidden="hidden" i-amphtml-layout="nodisplay">
+                    <script type="application/json">
+                        [
+                            {
+                                "selector": "#anim-6616963e-2b8f-40f3-919a-2c134ab1b8df",
+                                "keyframes": {
+                                    "opacity": [
+                                        0,
+                                        1
+                                    ]
+                                },
+                                "delay": 200,
+                                "duration": 2000,
+                                "easing": "cubic-bezier(0.4, 0.4, 0.0, 1)",
+                                "fill": "both"
+                            }
+                        ]</script>
+                </amp-story-animation>
+                <amp-story-grid-layer template="vertical" aspect-ratio="412:618" class="grid-layer i-amphtml-layout-container" i-amphtml-layout="container" style="--aspect-ratio:412/618;">
+                    <div class="_f09cc7b page-fullbleed-area">
+                        <div class="page-safe-area">
+                            <div class="_6120891">
+                                <div class="_89d52dd mask" id="el-e85e1b69-ee69-4def-8d6b-6717a2fa4be2">
+                                    <div class="_dc67a5c fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </amp-story-grid-layer>
+                <amp-story-grid-layer template="vertical" aspect-ratio="412:618" class="grid-layer i-amphtml-layout-container" i-amphtml-layout="container" style="--aspect-ratio:412/618;">
+                    <div class="page-fullbleed-area">
+                        <div class="page-safe-area">
+                            <div class="_d1a27f8">
+                                <div id="el-707a2c6d-3f16-4095-a4f0-563c7cb41453" class="_894086c">
+                                    <h1 class="_e4fae6c fill text-wrapper">
+                                        <span>
+                                            <span class="_886e10f">$quote</span>
+                                        </span>
+                                    </h1>
+                                </div>
+                            </div>
+                            <div class="_5d27ef9">
+                                <div id="anim-6616963e-2b8f-40f3-919a-2c134ab1b8df" class="_75da10d animation-wrapper">
+                                    <div id="el-b0c70796-0353-46c6-853b-3b06cef22a85" class="_78119e0">
+                                        <p class="_3c49000 fill text-wrapper">
+                                            <span>
+                                                <span class="_e862c37">$author</span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </amp-story-grid-layer>
+            </amp-story-page>
+            <amp-story-page id="302b377e-23d2-4e77-bd04-a6c021ff503d" auto-advance-after="7s" class="i-amphtml-layout-container" i-amphtml-layout="container">
+                <amp-story-grid-layer template="vertical" aspect-ratio="412:618" class="grid-layer i-amphtml-layout-container" i-amphtml-layout="container" style="--aspect-ratio:412/618;">
+                    <div class="_c84718f page-fullbleed-area">
+                        <div class="page-safe-area">
+                            <div class="_6120891">
+                                <div class="_89d52dd mask" id="el-a695d74c-6811-4ec3-8e53-f5b81552f690">
+                                    <div class="_dc67a5c fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </amp-story-grid-layer>
+                <amp-story-grid-layer template="vertical" aspect-ratio="412:618" class="grid-layer i-amphtml-layout-container" i-amphtml-layout="container" style="--aspect-ratio:412/618;">
+                    <div class="page-fullbleed-area">
+                        <div class="page-safe-area">
+                            <div class="_11363d9">
+                                <div class="_528a8ca mask">
+                                    <svg width="0" height="0">
+                                        <defs>
+                                            <clippath id="el-1fcdaad7-a0bf-430f-a2db-009e1c630ca7" transform="scale(1 0.89949881)" clippathunits="objectBoundingBox">
+                                                <path d="M 0.205572 , 1.093842 c -0.054252 -0.008798 -0.099413 -0.059824 -0.138710 -0.124340 c -0.033431 -0.054545 -0.055718 -0.117009 -0.063050 -0.179472 c -0.008211 -0.072727 -0.007038 -0.144575 , 0.040762 -0.183578 C 0.119648 , 0.545455 , 0.165396 , 0.498827 , 0.191789 , 0.454545 c 0.047507 -0.080059 , 0.043109 -0.137830 , 0.056012 -0.204106 c 0.009971 -0.051906 , 0.027566 -0.112023 , 0.102933 -0.184457 c 0.041056 -0.039589 , 0.110264 -0.059238 , 0.183578 -0.064809 c 0.062170 -0.004692 , 0.129326 , 0.005572 , 0.193255 , 0.024340 c 0.064809 , 0.018768 , 0.124047 , 0.048974 , 0.170968 , 0.090323 c 0.049267 , 0.043988 , 0.094135 , 0.097654 , 0.100587 , 0.165982 c 0.005279 , 0.055132 -0.024927 , 0.114663 -0.060997 , 0.184751 c -0.058065 , 0.112610 -0.068328 , 0.188563 -0.080352 , 0.247801 c -0.016716 , 0.080938 -0.010264 , 0.143109 -0.067449 , 0.252199 c -0.030792 , 0.058944 -0.102053 , 0.082405 -0.175367 , 0.105279 c -0.061877 , 0.019648 -0.130205 , 0.038710 -0.202346 , 0.039589 C 0.340762 , 1.112903 , 0.268622 , 1.104106 , 0.205572 , 1.093842 z"/>
+                                            </clippath>
+                                        </defs>
+                                    </svg>
+                                    <div class="_2410297 fill"></div>
+                                </div>
+                            </div>
+                            <div class="_4238e10">
+                                <div class="_64ca198 mask">
+                                    <svg width="0" height="0">
+                                        <defs>
+                                            <clippath id="el-b3bf643a-52b5-449b-82d1-23fbb5949b7e" transform="scale(1 1.01704694)" clippathunits="objectBoundingBox">
+                                                <path d="M 0.157040 , 0.886024 C 0.081227 , 0.837803 , 0.030944 , 0.761733 , 0.009541 , 0.687983 c -0.023724 -0.081485 -0.006704 -0.152140 , 0.084580 -0.190562 c 0.095152 -0.039969 , 0.144404 -0.089479 , 0.182568 -0.125322 c 0.069108 -0.064724 , 0.073749 -0.121196 , 0.101857 -0.181795 c 0.021919 -0.047189 , 0.063950 -0.091542 , 0.161939 -0.142084 c 0.095926 -0.049510 , 0.175090 -0.063693 , 0.240330 -0.028623 c 0.056730 , 0.030428 , 0.102114 , 0.097473 , 0.142341 , 0.194172 c 0.025529 , 0.060598 , 0.044611 , 0.135121 , 0.065498 , 0.222537 c 0.016503 , 0.070139 , 0.014183 , 0.134605 -0.004126 , 0.194430 c -0.019082 , 0.062919 -0.045900 , 0.125580 -0.096699 , 0.172254 c -0.047705 , 0.043837 -0.119907 , 0.065498 -0.190046 , 0.091542 c -0.069881 , 0.025786 -0.122744 , 0.055441 -0.173801 , 0.068076 c -0.072976 , 0.017793 -0.134348 , 0.028107 -0.193914 , 0.014956 C 0.276173 , 0.965188 , 0.224342 , 0.928314 , 0.157040 , 0.886024 z"/>
+                                            </clippath>
+                                        </defs>
+                                    </svg>
+                                    <div class="_a0a0f64 fill"></div>
+                                </div>
+                            </div>
+                            <div class="_d2f70c4">
+                                <div class="_df62e37 mask">
+                                    <svg width="0" height="0">
+                                        <defs>
+                                            <clippath id="el-dfa2f49e-5416-4d12-b4de-ae054d675216" transform="scale(1 0.78026574)" clippathunits="objectBoundingBox">
+                                                <path d="M 0.374874 , 1.281615 c -0.006738 , 0.000000 -0.013629 -0.000153 -0.020367 -0.000613 c -0.057119 -0.003216 -0.118986 -0.014548 -0.194634 -0.035680 c -0.044562 -0.012251 -0.082233 -0.061407 -0.118986 -0.154666 c -0.026645 -0.068145 -0.040274 -0.139812 -0.040887 -0.212857 c -0.000153 -0.079630 , 0.006738 -0.166917 , 0.058344 -0.210713 c 0.078558 -0.066460 , 0.126489 -0.117454 , 0.155585 -0.165692 c 0.040274 -0.066920 , 0.050994 -0.120364 , 0.062479 -0.176871 c 0.003675 -0.018070 , 0.007350 -0.036752 , 0.012251 -0.055741 c 0.014701 -0.058344 , 0.037212 -0.127255 , 0.117454 -0.207038 c 0.050381 -0.049616 , 0.126642 -0.060948 , 0.181771 -0.061713 c 0.055435 -0.000766 , 0.116382 , 0.013323 , 0.181158 , 0.042265 c 0.061407 , 0.027105 , 0.114238 , 0.067686 , 0.152828 , 0.117454 l 0.000000 , 0.000000 c 0.034149 , 0.043950 , 0.079324 , 0.112554 , 0.078099 , 0.200300 c -0.000919 , 0.065848 -0.038284 , 0.136137 -0.077639 , 0.210407 c -0.059723 , 0.112554 -0.080243 , 0.193562 -0.096781 , 0.258644 c -0.001991 , 0.007963 -0.003982 , 0.015467 -0.005819 , 0.022970 c -0.006432 , 0.024348 -0.011179 , 0.047625 -0.015926 , 0.070136 c -0.013629 , 0.065389 -0.026339 , 0.127255 -0.075036 , 0.217757 c -0.036752 , 0.068451 -0.111788 , 0.090503 -0.177942 , 0.109951 C 0.495391 , 1.266454 , 0.435974 , 1.281615 , 0.374874 , 1.281615 z  M 0.592478 , 0.001562 c -0.001531 , 0.000000 -0.003063 , 0.000000 -0.004441 , 0.000000 c -0.054975 , 0.000919 -0.130777 , 0.012098 -0.180546 , 0.061713 c -0.079936 , 0.079477 -0.102294 , 0.148081 -0.116995 , 0.206119 c -0.004747 , 0.018836 -0.008576 , 0.037518 -0.012251 , 0.055588 c -0.011026 , 0.054210 -0.022358 , 0.110257 -0.062632 , 0.177483 c -0.029249 , 0.048391 -0.077333 , 0.099538 -0.156044 , 0.165998 c -0.051147 , 0.043337 -0.057885 , 0.130164 -0.057732 , 0.209488 c 0.000459 , 0.072892 , 0.014242 , 0.144406 , 0.040734 , 0.212245 c 0.036446 , 0.092646 , 0.073811 , 0.141496 , 0.117761 , 0.153594 c 0.075495 , 0.020979 , 0.137209 , 0.032311 , 0.194175 , 0.035527 c 0.068145 , 0.003982 , 0.134452 -0.012710 , 0.195859 -0.031393 c 0.065848 -0.019295 , 0.140578 -0.041346 , 0.177024 -0.109185 c 0.048544 -0.090196 , 0.061407 -0.151910 , 0.074883 -0.217298 c 0.004594 -0.022511 , 0.009494 -0.045787 , 0.015926 -0.070136 c 0.001991 -0.007350 , 0.003828 -0.015007 , 0.005819 -0.022970 c 0.016539 -0.065235 , 0.037059 -0.146397 , 0.096781 -0.258951 c 0.039356 -0.074117 , 0.076414 -0.144253 , 0.077486 -0.209641 c 0.001225 -0.087134 -0.043797 -0.155432 -0.077639 -0.199228 l 0.000000 , 0.000000 c -0.038437 -0.049462 -0.091115 -0.089890 -0.152216 -0.116842 C 0.705645 , 0.015803 , 0.646381 , 0.001562 , 0.592478 , 0.001562 z"/>
+                                            </clippath>
+                                        </defs>
+                                    </svg>
+                                    <div class="_b9870c5 fill"></div>
+                                </div>
+                            </div>
+                            <div class="_d08f67f">
+                                <div id="el-2a65ebbb-d33a-4a2c-98a6-bce666c4a24e" class="_89d52dd">
+                                    <h1 class="_f522543 fill text-wrapper">
+                                        <span>
+                                            <span class="_d5c04a4">$quote</span>
+                                        </span>
+                                    </h1>
+                                </div>
+                            </div>
+                            <div class="_ded5015">
+                                <div id="el-4cf576e1-cea6-4498-95f4-ffc1a0cefdf1" class="_89d52dd">
+                                    <p class="_b305b51 fill text-wrapper">
+                                        <span>
+                                            <span class="_acd44ff">-</span>
+                                            <span class="_acd44ff">$author</span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </amp-story-grid-layer>
+            </amp-story-page>
+        </amp-story>
+    </body>
 </html>
-

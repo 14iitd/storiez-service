@@ -214,15 +214,14 @@
 
             const slide1Value = document.getElementById('slide1').value;
             const slide3Value = document.getElementById('slide3').value;
-            const categoryValue = document.getElementById('category').value;
+
             const languageValue = document.getElementById('language').value;
 
             const data = {
                 "lang": languageValue.toUpperCase(),
                 "cat": "quote",
-
                 "texts": [slide1Value,slide3Value],
-                "template": "news"
+                "template": "quote"
             };
 
             showLoader();
