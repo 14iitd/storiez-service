@@ -17,7 +17,6 @@ story_elements = soup.select('a[href*="/webstory/"]')  # Select all <a> tags wit
 for element in story_elements:
     href = element.get('href')
     if "webstory" in href:
-        href = f"https://webstories.prabhasakshi.com{href}"
         import json
         payload = {"url": href, "cat": "magazine", "lang": "HINDI", "loc": "INDIA"}
         res1 = requests.post("https://playchat.live/storiez/post", data=json.dumps(payload))

@@ -183,9 +183,9 @@
                 <div style="flex: 1;">
                     <label for="category">Category:</label>
                     <select id="category" name="category">
+                        <option value="fact">Fact</option>
                         <option value="insight">Insight</option>
                         <option value="quote">Quote</option>
-                        <option value="fact">Fact</option>
                         <option value="news">News</option>
                     </select>
                 </div>
@@ -209,6 +209,13 @@
             toast.textContent = message;
             toast.className = 'toast show';
             setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 3000);
+        }
+         function showErrorToast(message) {
+            const toast = document.getElementById('toast');
+            toast.style.backgroundColor="#E33023";
+            toast.textContent = message;
+            toast.className = 'toast show';
+            setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 5000);
         }
 
         function showLoader() {
@@ -258,6 +265,7 @@
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
+                showErrorToast('Duplicate post, create another');
                 hideLoader();
             });
         });
