@@ -3,342 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Image with Heading</title>
+    <title>Fullscreen Image with Responsive Bottom Center Text Overlay</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Fullscreen styles */
+        html, body {
+            height: 100%;
             margin: 0;
-            padding: 0;
-            background-color: #f2f2f2;
+            overflow: hidden; /* Prevent scrolling */
         }
 
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        input[type="text"],
-        textarea,
-        select {
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 18px;
+        /* Container for fullscreen image */
+        .fullscreen-image {
+            position: relative;
             width: 100%;
-            box-sizing: border-box;
-        }
-
-        .select-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .select-container label {
-            display: block;
-        }
-
-        .select-container select {
-            flex: 1;
-            padding: 12px;
-            width: auto;
-        }
-
-        .img-preview {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .img-preview img {
-            max-width: 100%;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            display: none;
-        }
-
-        .error-message {
-            color: red;
+            height: 100%;
+            background-color: #000; /* Black background */
             text-align: center;
-            margin-bottom: 20px;
-            display: none;
+            color: #fff; /* White text */
         }
 
-        button[type="submit"] {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            align-self: center;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-
-        button[type="submit"]:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        @media screen and (max-width: 600px) {
-            .container {
-                margin: 20px;
-                padding: 10px;
-            }
-
-            .select-container {
-                flex-direction: column;
-            }
-
-            .select-container select {
-                margin-bottom: 20px;
-            }
-        }
-
-        .rich-text-input {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            min-height: 100px;
-            font-family: Arial, sans-serif;
-        }
-
-        .loader {
-            display: none;
-            border: 8px solid #f3f3f3;
-            border-top: 8px solid #007bff;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 2s linear infinite;
+        /* Image styles */
+        .fullscreen-image img {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        /* Text overlay styles */
+        .text-overlay {
+            position: centre;
+            bottom: 20px; /* Adjust bottom spacing */
 
-        .toast {
-            visibility: hidden;
-            min-width: 250px;
-            margin-left: -125px;
-            background-color: #28a745;
-            color: #fff;
-            text-align: center;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+
             border-radius: 5px;
-            padding: 16px;
-            position: fixed;
-            z-index: 1;
-            left: 50%;
-            bottom: 30px;
-            font-size: 17px;
+            max-width: 90%; /* Limit max width for responsiveness */
+            /* Include padding in width calculation */
         }
 
-        .toast.show {
-            visibility: visible;
-            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
 
-        @-webkit-keyframes fadein {
-            from { bottom: 0; opacity: 0; }
-            to { bottom: 30px; opacity: 1; }
-        }
-
-        @keyframes fadein {
-            from { bottom: 0; opacity: 0; }
-            to { bottom: 30px; opacity: 1; }
-        }
-
-        @-webkit-keyframes fadeout {
-            from { bottom: 30px; opacity: 1; }
-            to { bottom: 0; opacity: 0; }
-        }
-
-        @keyframes fadeout {
-            from { bottom: 30px; opacity: 1; }
-            to { bottom: 0; opacity: 0; }
-        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="loader" id="loader"></div>
-        <div class="toast" id="toast">Post created successfully!</div>
-        <form id="postForm">
-            <label for="slide1">Heading:</label>
-            <input type="text" id="slide1" name="slide1">
 
-            <label for="slide2">Image URL:</label>
-            <textarea contenteditable="true" id="slide2" name="slide2" class="rich-text-input" placeholder="Start typing here..."></textarea>
-            <div class="img-preview" id="imgPreview">
-                <img id="imagePreview" alt="Image Preview">
-            </div>
-            <div class="error-message" id="errorMessage">Invalid image URL</div>
-
-            <label for="slide3">Additional Text:</label>
-            <textarea contenteditable="true" id="slide3" name="slide3" class="rich-text-input" placeholder="Add more details..."></textarea>
-
-            <div class="select-container">
-                <div style="flex: 1;">
-                    <label for="category">Category:</label>
-                    <select id="category" name="category">
-                        <option value="fact">Fact</option>
-                        <option value="insight">Insight</option>
-                        <option value="quote">Quote</option>
-                        <option value="news">News</option>
-                    </select>
-                </div>
-                <div style="flex: 1;">
-                    <label for="language">Language:</label>
-                    <select id="language" name="language">
-                        <option value="ENGLISH">English</option>
-                        <option value="HINDI">Hindi</option>
-                    </select>
-                </div>
-            </div>
-
-            <button type="submit" id="submitButton">Submit</button>
-        </form>
+<div class="fullscreen-image">
+    <img src="https://example.com/your-image.jpg" alt="Fullscreen Image">
+    <div class="text-overlay">
+        <h1>Text Overlay ExampleThis is a demo of responsive text overlay at the bottom This is a demo of responsive text overlay at the bottom This is a demo of responsive text overlay at the bottom This is a demo of responsive text overlay at the bottom This is a demo of responsive text overlay at the bottom </h1>
+        <p>This is a demo of responsive text overlay at the bottom center of a fullscreen image.</p>
     </div>
+</div>
 
-    <script>
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.className = 'toast show';
-            setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 3000);
-        }
-
-        function showErrorToast(message) {
-            const toast = document.getElementById('toast');
-            toast.style.backgroundColor="#E33023";
-            toast.textContent = message;
-            toast.className = 'toast show';
-            setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 5000);
-        }
-
-        function showLoader() {
-            document.getElementById('loader').style.display = 'block';
-        }
-
-        function hideLoader() {
-            document.getElementById('loader').style.display = 'none';
-        }
-
-function updateImagePreview() {
-            const imageUrl = document.getElementById('slide2').value;
-            const imagePreview = document.getElementById('imagePreview');
-            const errorMessage = document.getElementById('errorMessage');
-            const submitButton = document.getElementById('submitButton');
-
-            if (imageUrl && !imageUrl.startsWith('data:image')) {
-                const img = new Image();
-                img.onload = function() {
-                    imagePreview.src = imageUrl;
-                    imagePreview.style.display = 'block';
-                    errorMessage.style.display = 'none';
-                    submitButton.disabled = false;
-                }
-                img.onerror = function() {
-                    imagePreview.src = '';
-                    imagePreview.style.display = 'none';
-                    errorMessage.style.display = 'block';
-                    submitButton.disabled = true;
-                }
-                img.src = imageUrl;
-            } else {
-                imagePreview.src = '';
-                imagePreview.style.display = 'none';
-                errorMessage.style.display = 'block';
-                submitButton.disabled = true;
-            }
-        }
-
-        document.getElementById('slide2').addEventListener('input', updateImagePreview);
-
-        document.getElementById('postForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            const slide1Value = document.getElementById('slide1').value;
-            const slide2Value = document.getElementById('slide2').value;
-            const slide3Value = document.getElementById('slide3').value;
-            const categoryValue = document.getElementById('category').value;
-            const languageValue = document.getElementById('language').value;
-
-            const data = {
-                "lang": languageValue.toUpperCase(),
-                "cat": categoryValue,
-                "img": slide2Value,
-                "texts": [slide1Value, slide3Value],
-                "template": "news"
-            };
-
-            showLoader();
-
-            fetch('https://playchat.live/storiez/post', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('API response:', data);
-                showToast('Post created successfully!');
-                hideLoader();
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-                showErrorToast('Duplicate post, create another');
-                hideLoader();
-            });
-        });
-
-        document.getElementById('slide2').addEventListener('paste', handlePaste);
-        document.getElementById('slide3').addEventListener('paste', handlePaste);
-
-        function handlePaste(event) {
-            event.preventDefault();
-            var text = (event.originalEvent || event).clipboardData.getData('text/plain');
-            document.execCommand('insertText', false, text);
-        }
-    </script>
 </body>
 </html>

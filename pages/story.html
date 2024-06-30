@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Fabric.js Canvas</title>
+    <!-- Include Fabric.js library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+    <!-- Include TinyColor library for color manipulation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.2/tinycolor.min.js"></script>
+    <!-- Include Spectrum color picker library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif; /* Default font family */
+        }
+        .canvas-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+        .canvas-item {
+            flex: 1;
+            position: relative;
+        }
+        .canvas-item canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .color-wheel {
+            width: 40px;
+            height: 40px;
+            background-color: #3498db;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .option-button {
+            margin: 5px;
+            padding: 8px 12px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .option-button:hover {
+            background-color: #2980b9;
+        }
+        .option-button:active {
+            background-color: #1f618d;
+        }
+        .emoji-picker {
+            display: none;
+            position: absolute;
+            top: 50px;
+            left: 100px;
+            z-index: 1000;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .emoji-picker button {
+            cursor: pointer;
+            font-size: 20px;
+            margin: 5px;
+            padding: 5px;
+        }
+        .text-options {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background-color: transparent;
+
+            padding: 10px;
+
+        }
+        .save-load-buttons {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+        .save-load-buttons button {
+            margin: 5px;
+            padding: 8px 12px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .save-load-buttons button:hover {
+            background-color: #2980b9;
+        }
+        .save-load-buttons button:active {
+            background-color: #1f618d;
+        }
+        .add-canvas-button {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            z-index: 1000;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .add-canvas-button:hover {
+            background-color: #2980b9;
+        }
+        .add-canvas-button:active {
+            background-color: #1f618d;
+        }
+        .font-style-select {
+            margin-bottom: 10px;
+            font-size: 14px;
+            padding: 6px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="canvas-container" id="canvas-container">
+        <div class="canvas-item" id="canvas-item-1">
+            <canvas id="canvas-1"></canvas>
+            <div class="color-wheel" onclick="changeRandomColor('canvas-1')"><i class="fas fa-palette" style="--fa-primary-color: #db0f0f; --fa-secondary-color: #19cca0;"></i></div>
+        </div>
+    </div>
+    <div class="text-options">
+
+      <button class="option-button" onclick="addPlaceholderText()"><i class="fas fa-font"></i></button>
+
+        <button class="option-button" onclick="showEmojiPicker()"><i class="fas fa-smile"></i></button>
+        <button class="option-button" onclick="addImage()"><i class="fas fa-file-image" ></i></button>
+        <button class="option-button" onclick="deleteObjects()"><i class="fa-solid fa-trash-can"></i></button>
+
+        <div class="font-options">
+            <label for="fontStyleSelect">Font Style:</label>
+            <select id="fontStyleSelect" class="font-style-select" onchange="changeFontStyle()">
+                <option value="Arial, sans-serif">Arial</option>
+                <option value="Helvetica, sans-serif">Helvetica</option>
+                <option value="Times New Roman, serif">Times New Roman</option>
+                <option value="Courier New, monospace">Courier New</option>
+                <option value="Georgia, serif">Georgia</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="emoji-picker" id="emojiPicker">
+        <button onclick="addEmoji('😊')">😊</button>
+        <button onclick="addEmoji('😁')">😁</button>
+        <button onclick="addEmoji('🎉')">🎉</button>
+        <button onclick="addEmoji('❤️')">❤️</button>
+        <button onclick="addEmoji('👍')">👍</button>
+        <button onclick="addEmoji('🔥')">🔥</button>
+    </div>
+
+    <div class="save-load-buttons">
+        <button onclick="saveCanvas()">Save Canvas</button>
+    </div>
+
+
+    <script>
+        const canvases = [];
+        const canvasContainer = document.getElementById('canvas-container');
+        let activeCanvasId = 'canvas-1';
+
+        // Initialize Fabric.js canvas
+        const initialCanvas = new fabric.Canvas('canvas-1', {
+            backgroundColor: '#f0f0f0',
+            selection: true,  // Enable object selection
+            // Enable touch gestures for zooming and rotating
+            perPixelTargetFind: true,
+            targetFindTolerance: 8
+        });
+
+
+
+
+        canvases.push(initialCanvas);
+
+        function addCanvas() {
+            const newCanvasId = `canvas-${canvases.length + 1}`;
+            const newCanvasContainer = document.createElement('div');
+            newCanvasContainer.className = 'canvas-item';
+            newCanvasContainer.id = `canvas-item-${canvases.length + 1}`;
+
+            const newCanvasElement = document.createElement('canvas');
+            newCanvasElement.id = newCanvasId;
+
+            newCanvasContainer.appendChild(newCanvasElement);
+            newCanvasContainer.innerHTML += `<div class="color-wheel" onclick="changeRandomColor('${newCanvasId}')">Random</div>`;
+            canvasContainer.appendChild(newCanvasContainer);
+
+            const newCanvas = new fabric.Canvas(newCanvasId, {
+                backgroundColor: '#f0f0f0'
+            });
+            canvases.push(newCanvas);
+
+            adjustCanvasSize(newCanvasId);
+        }
+
+        function adjustCanvasSize(canvasId) {
+            const containerWidth = window.innerWidth / canvases.length;
+            const containerHeight = window.innerHeight;
+            const canvasElement = document.getElementById(canvasId);
+            canvasElement.width = containerWidth;
+            canvasElement.height = containerHeight;
+            const canvas = canvases.find(c => c.lowerCanvasEl.id === canvasId);
+            if (canvas) {
+                canvas.setDimensions({ width: containerWidth, height: containerHeight });
+            }
+        }
+
+        function addPlaceholderText() {
+            const activeCanvas = canvases.find(c => c.lowerCanvasEl.id === activeCanvasId);
+            const textObject = new fabric.Textbox('Enter text here...', {
+                left: 250,
+                top: 400,
+                width: 200,
+                fontSize: 20,
+                align:"center",
+
+                fill: 'black',
+                fontStyle: 'normal',
+                editable: true  // Allow text editing
+            });
+            activeCanvas.add(textObject);
+            activeCanvas.setActiveObject(textObject); // Focus on the newly added text for editing
+        }
+
+        function showEmojiPicker() {
+            const emojiPicker = document.getElementById('emojiPicker');
+            emojiPicker.style.display = 'block';
+        }
+
+        function addEmoji(emoji) {
+            const activeCanvas = canvases.find(c => c.lowerCanvasEl.id === activeCanvasId);
+            const emojiText = new fabric.Textbox(emoji, {
+                left: 300,
+                top: 300,
+                fontSize: 40,
+                fill: 'black',
+                fontStyle: 'normal',
+                editable: false  // Do not allow text editing for emoji
+            });
+            activeCanvas.add(emojiText);
+
+            const emojiPicker = document.getElementById('emojiPicker');
+            emojiPicker.style.display = 'none';
+        }
+
+        function addImage() {
+            const activeCanvas = canvases.find(c => c.lowerCanvasEl.id === activeCanvasId);
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const imgObj = new Image();
+                        imgObj.src = event.target.result;
+
+                        imgObj.onload = function() {
+                            const image = new fabric.Image(imgObj, {
+                                left: 100,
+                                top: 100,
+                                scaleX: 0.5,
+                                scaleY: 0.5
+                            });
+                            activeCanvas.add(image);
+                        };
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        }
+
+        function deleteObjects() {
+            const activeCanvas = canvases.find(c => c.lowerCanvasEl.id === activeCanvasId);
+            const activeObject = activeCanvas.getActiveObject();
+            if (activeObject) {
+                activeCanvas.remove(activeObject);
+            }
+        }
+
+        function clearCanvas() {
+            const activeCanvas = canvases.find(c => c.lowerCanvasEl.id === activeCanvasId);
+            activeCanvas.clear();
+        }
+
+        function changeRandomColor(canvasId) {
+            const randomColor = getRandomColor();
+            const activeCanvas = canvases.find(c => c.lowerCanvasEl.id === canvasId);
+            activeCanvas.setBackgroundColor(randomColor);
+            activeCanvas.renderAll();
+        }
+
+        function getRandomColor() {
+            return '#' + Math.floor(Math.random() * 16777215).toString(16);
+        }
+
+        function changeFontStyle() {
+            const activeCanvas = canvases.find(c => c.lowerCanvasEl.id === activeCanvasId);
+            const activeObject = activeCanvas.getActiveObject();
+            if (activeObject && activeObject.type === 'textbox') {
+                const fontStyle = document.getElementById('fontStyleSelect').value;
+                activeObject.set('fontFamily', fontStyle);
+                activeCanvas.renderAll();
+            }
+        }
+
+function saveCanvas() {
+
+    const activeCanvas = canvases.find(c => c.lowerCanvasEl.id === activeCanvasId);
+    const json = JSON.stringify(activeCanvas.toJSON());
+    const data = {
+
+
+                "canvas": json,
+                "template": "canvas"
+            };
+    // Example using fetch API
+    fetch('https://playchat.live/storiez/post', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+         body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to save canvas');
+        }
+        return response.json();
+    })
+    .then(data => {
+        alert('Canvas state saved successfully!');
+        console.log(data); // Optionally, handle response from server
+    })
+    .catch(error => {
+        console.error('Error saving canvas:', error);
+        alert('Failed to save canvas');
+    });
+}
+
+
+        window.addEventListener('resize', () => {
+            canvases.forEach((canvas, index) => {
+                adjustCanvasSize(canvas.lowerCanvasEl.id);
+            });
+        });
+
+        window.onload = () => {
+            canvases.forEach((canvas, index) => {
+                adjustCanvasSize(canvas.lowerCanvasEl.id);
+            });
+        };
+    </script>
+</body>
+</html>

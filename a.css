@@ -1,34 +1,47 @@
 body {
-  font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
-#editor {
-  display: flex;
+.story-editor {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-#story-preview {
-  flex: 3;
-  border: 1px solid #ccc;
-  padding: 20px;
+.story-canvas {
+    background-color: #f0f0f0;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
 }
 
-#controls {
-  flex: 1;
-  padding: 20px;
+.toolbox {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
 }
 
-.story-page {
-  border: 1px solid #ddd;
-  margin-bottom: 20px;
-  padding: 10px;
+.toolbox button {
+    margin: 0 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.story-element {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.text-element {
-  border: 1px dashed #ccc;
-  padding: 10px;
+.toolbox button:hover {
+    background-color: #45a049;
 }
