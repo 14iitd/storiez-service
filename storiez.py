@@ -1,7 +1,6 @@
 import starlette.responses
 from fastapi import FastAPI
 
-from storiez.news import router as storiesapi
 
 from starlette.staticfiles import StaticFiles
 
@@ -16,7 +15,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.include_router(storiesapi)
+
 from fastapi.responses import FileResponse
 
 @app.get("/")
