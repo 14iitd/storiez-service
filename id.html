@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html >
+<html lang="en" id="main">
+<head >
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Embedded Web Page</title>
@@ -73,39 +73,26 @@
         let apiEndpoint;
         if (hasId) {
             const id = urlParams.get('id'); // Extract the 'id' parameter
-            apiEndpoint = `https://playchat.live/stories/bulk/post/${id}`;
+            apiEndpoint = `https://playchat.live/storiez/post/${id}`;
         } else {
             apiEndpoint = 'https://playchat.live/stories/bulk?langs=ENGLISH&' + urlParams;
         }
 
         // Fetch data from the appropriate API
         fetch(apiEndpoint)
-            .then(response => response.json())
+            .then(response => response.text())
             .then(data => {
                 // Populate URLs array with source values from API response
-                urls = data.map(item => item.source.url);
+
                 // Load the first URL
-                loadURL(urls[0]);
+                const webContent = document.getElementById('main');
+        webContent.innerHTML = data;
             })
             .catch(error => console.error('Error fetching data:', error));
 
-        let currentIndex = 0;
-        const webContent = document.getElementById('webContent');
 
-        function loadNextURL() {
-            currentIndex = (currentIndex + 1) % urls.length;
-            loadURL(urls[currentIndex]);
-        }
 
-        function loadURL(url) {
-            webContent.innerHTML = ''; // Clear previous content
-            const iframe = document.createElement('iframe');
-            iframe.src = url;
-            iframe.style.width = '100%';
-            iframe.style.height = '100%';
-            iframe.style.border = 'none';
-            webContent.appendChild(iframe);
-        }
+
     </script>
 </body>
 </html>

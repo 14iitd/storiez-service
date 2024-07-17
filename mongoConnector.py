@@ -25,7 +25,8 @@ class MongoDBConnector:
         if self.client:
             self.client.close()
 #mongo_connector = MongoDBConnector(mongo_uri="mongodb+srv://dev:B$P*nZ#AU8WU4vs@cluster0.hkuutb6.mongodb.net/", db_name="odd-emoji")
-mongo_connector = MongoDBConnector(mongo_uri="mongodb://localhost:8887", db_name="games")
+mongo_connector = MongoDBConnector(mongo_uri="mongodb://a:b@localhost:27018/games", db_name="games")
+#mongo_connector = MongoDBConnector(mongo_uri="mongodb://storiez:asdert@localhost:8887/games", db_name="games")
 
 # mongo_connector.connect()
 # mongo_connector.get_database()["demo"].insert_one({"a": 1})

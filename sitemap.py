@@ -2,7 +2,7 @@ import pymongo
 from pymongo import MongoClient
 import xml.etree.ElementTree as ET
 from datetime import datetime
-db = MongoClient(mongo_uri="mongodb://127.0.0.1:27017")["games"]
+db = MongoClient("mongodb://a:b@127.0.0.1:27017")["games"]
 
 
 COLLECTION_NAME = "stories"
@@ -27,9 +27,14 @@ def create_sitemap(documents, file_path):
     for doc in documents:
         url = ET.SubElement(urlset, "url")
         loc = ET.SubElement(url, "loc")
-        loc.text = "https://storiez.today?id="+str(doc["_id"])
+        loc.text = "https://storiez.today/id?id="+str(doc["_id"])
         if "created_at" in doc:
             lastmod = ET.SubElement(url, "lastmod")
+            timestamp_seconds = doc["created_at"] / 1000.0
+            import datetime
+            lastmod1 = datetime.datetime.fromtimestamp(timestamp_seconds)
+            formatted_date = lastmod1.strftime('%Y-%m-%dT%H:%M:%S')
+            lastmod.text = formatted_date
 
     tree = ET.ElementTree(urlset)
     tree.write(file_path, encoding="utf-8", xml_declaration=True)
@@ -59,9 +64,10 @@ sitemapindex = ET.Element("sitemapindex", xmlns="http://www.sitemaps.org/schemas
 for sitemap in sitemaps:
     sitemap_element = ET.SubElement(sitemapindex, "sitemap")
     loc = ET.SubElement(sitemap_element, "loc")
-    loc.text = os.path.abspath(sitemap)
-    lastmod = ET.SubElement(sitemap_element, "lastmod")
-    lastmod.text = format_date(datetime.now())
+    #sitemap = sitemap.replace("/var/www/html","https://storiez.today")
+    loc.text = "https://storiez.today"+sitemap
+
+
 tree = ET.ElementTree(sitemapindex)
 tree.write(SITEMAP_INDEX_FILE, encoding="utf-8", xml_declaration=True)
 
