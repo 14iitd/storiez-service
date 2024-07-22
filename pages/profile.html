@@ -3,122 +3,305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editable User Profile</title>
+    <title>Instagram Profile Page</title>
     <style>
-        body, html {
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #fafafa;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #fafafa;
         }
+
         .profile-container {
             max-width: 935px;
-            margin: 20px auto;
+            margin: 0 auto;
             padding: 20px;
             background-color: #fff;
-            border: 1px solid #dbdbdb;
-            border-radius: 3px;
         }
+
         .profile-header {
             display: flex;
-            flex-direction: column;
-            padding: 20px;
+            padding: 20px 0;
             border-bottom: 1px solid #dbdbdb;
         }
+
+        .profile-picture img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
         .profile-info {
-            flex-grow: 1;
+            flex: 1;
+            margin-left: 30px;
         }
-        .profile-info input {
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
-            font-size: 18px;
+
+        .profile-info-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-name {
+            font-size: 28px;
+            font-weight: 300;
+            margin-right: 20px;
+        }
+
+        .edit-profile-btn {
+            padding: 5px 9px;
+            background-color: #fff;
+            color: #262626;
             border: 1px solid #dbdbdb;
             border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
         }
-        .profile-info textarea {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #dbdbdb;
-            border-radius: 4px;
-            resize: none;
-            height: 60px;
-        }
+
         .profile-stats {
             display: flex;
-            margin-top: 15px;
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
         }
-        .profile-stats div {
+
+        .profile-stats li {
             margin-right: 40px;
             font-size: 16px;
         }
-        .profile-stats div span {
+
+        .stat-count {
+            font-weight: 600;
+        }
+
+        .profile-bio {
+            font-size: 14px;
+        }
+
+        .profile-posts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .post {
+            flex: 1 1 calc(33.333% - 10px);
+            overflow: hidden;
+        }
+
+        .post iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
             font-weight: bold;
         }
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(293px, 1fr));
-            gap: 1px;
-            margin-top: 20px;
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
         }
-        .post {
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input {
             width: 100%;
-            height: 293px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .submit-btn {
+            background-color: #3897f0;
+            color: #fff;
             border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
     <div class="profile-container">
-        <div class="profile-header">
-            <div class="profile-info">
-                <input type="text" id="username" placeholder="Username">
-                <textarea id="bio" placeholder="User bio goes here."></textarea>
+        <header class="profile-header">
+            <div class="profile-picture">
+                <img id="profile-pic" src="default-profile-pic.jpg" alt="Profile Picture">
             </div>
-        </div>
-        <div class="profile-stats">
-            <div><span id="postCount">0</span> posts</div>
-            <div><span id="followersCount">0</span> followers</div>
-            <div><span id="followingCount">0</span> following</div>
-        </div>
-        <div class="posts-grid" id="postsGrid">
-            <!-- User posts will be inserted here -->
+            <div class="profile-info">
+                <div class="profile-info-header">
+                    <h1 class="profile-name" id="profile-name">johndoe</h1>
+                    <button class="edit-profile-btn" onclick="openModal()">Edit Profile</button>
+                </div>
+                <ul class="profile-stats">
+                    <li><span class="stat-count" id="post-count">0</span> posts</li>
+                    <li><span class="stat-count" id="followers-count">0</span> followers</li>
+                    <li><span class="stat-count" id="following-count">0</span> following</li>
+                </ul>
+                <div class="profile-bio">
+                    <p><strong id="full-name">John Doe</strong></p>
+                    <p id="bio">This is a bio. Edit your bio to tell people more about you.</p>
+                </div>
+            </div>
+        </header>
+        <section class="profile-posts" id="profile-posts">
+            <!-- Posts will be dynamically added here -->
+        </section>
+    </div>
+
+    <!-- The Modal -->
+    <div id="editProfileModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Edit Profile</h2>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="full-name">Full Name:</label>
+                <input type="text" id="edit-full-name" name="full-name">
+            </div>
+            <div class="form-group">
+                <label for="bio">Bio:</label>
+                <textarea id="edit-bio" name="bio" rows="4"></textarea>
+            </div>
+            <button class="submit-btn" onclick="submitEdit()">Submit</button>
         </div>
     </div>
 
     <script>
-        // Example data
-        const profileData = {
-            username: 'john_doe',
-            bio: 'Travel enthusiast. Love capturing moments.',
-            postCount: 5,
-            followersCount: 120,
-            followingCount: 180,
-            posts: [
-                'https://example.com/post1',
-                'https://example.com/post2',
-                'https://example.com/post3',
-                'https://example.com/post4',
-                'https://example.com/post5',
-            ]
-        };
+        let userId = 'ad288c3dcb83057b'; // Default user ID, can be dynamically set
 
-        // Set profile data
-        document.getElementById('username').value = profileData.username;
-        document.getElementById('bio').value = profileData.bio;
-        document.getElementById('postCount').innerText = profileData.postCount;
-        document.getElementById('followersCount').innerText = profileData.followersCount;
-        document.getElementById('followingCount').innerText = profileData.followingCount;
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            userId = urlParams.get('user_id') || userId; // Check if 'user_id' parameter is present
 
-        // Populate posts
-        const postsGrid = document.getElementById('postsGrid');
-        profileData.posts.forEach(postUrl => {
-            const iframe = document.createElement('iframe');
-            iframe.src = postUrl;
-            iframe.classList.add('post');
-            postsGrid.appendChild(iframe);
+            // Fetch user details
+            try {
+                const userDetailsResponse = await fetch(`https://playchat.live/profile/api/v1/${userId}/view`);
+                const userDetails = await userDetailsResponse.json();
+
+                // Update profile details
+                document.getElementById('profile-name').textContent = userDetails.username || 'howru';
+                document.getElementById('full-name').textContent = userDetails.full_name || 'howru';
+                document.getElementById('bio').textContent = userDetails.bio || 'This is a bio. Edit your bio to tell people more about you.';
+                document.getElementById('post-count').textContent = userDetails.posts || 0;
+                document.getElementById('followers-count').textContent = userDetails.followers || 0;
+                document.getElementById('following-count').textContent = userDetails.following || 0;
+
+                // Prefill modal inputs
+                document.getElementById('username').value = userDetails.username || '';
+                document.getElementById('edit-full-name').value = userDetails.full_name || '';
+                document.getElementById('edit-bio').value = userDetails.bio || '';
+            } catch (error) {
+                console.error('Error fetching user details:', error);
+            }
+
+            // Fetch posts
+            try {
+                const postsResponse = await fetch('https://playchat.live/stories/bulk');
+                const posts = await postsResponse.json();
+                const postsContainer = document.getElementById('profile-posts');
+
+                posts.slice(0, 12).forEach(post => {
+                    const postDiv = document.createElement('div');
+                    postDiv.classList.add('post');
+                    const iframe = document.createElement('iframe');
+                    iframe.src = post.source.url;
+                    postDiv.appendChild(iframe);
+                    postsContainer.appendChild(postDiv);
+                });
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+            }
         });
+
+        function openModal() {
+            document.getElementById('editProfileModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('editProfileModal').style.display = 'none';
+        }
+
+        async function submitEdit() {
+            const username = document.getElementById('username').value;
+            const fullName = document.getElementById('edit-full-name').value;
+            const bio = document.getElementById('edit-bio').value;
+
+            try {
+                const response = await fetch(`https://playchat.live/profile/api/v1/${userId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        full_name: fullName,
+                        bio: bio
+                    })
+                });
+
+                if (response.ok) {
+                    const updatedUser = await response.json();
+                    document.getElementById('profile-name').textContent = updatedUser.username;
+                    document.getElementById('full-name').textContent = updatedUser.full_name;
+                    document.getElementById('bio').textContent = updatedUser.bio;
+                    closeModal();
+                } else {
+                    console.error('Error updating profile:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error updating profile:', error);
+            }
+        }
     </script>
 </body>
 </html>

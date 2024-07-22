@@ -39,8 +39,8 @@ async def get_onePost(post_id:str):
 async def health_check():
 
     return FileResponse("privacy.html")
+app.mount("/st", StaticFiles(directory="sitemaps"), name="site")
 app.mount("/", StaticFiles(directory="pages", html = True), name="html5")
-app.mount("/st", StaticFiles(directory="sitemaps", html = True), name="html5")
 
 # If this script is executed, run the FastAPI application directly
 if __name__ == "__main__":
